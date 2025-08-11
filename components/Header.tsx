@@ -11,9 +11,9 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center space-x-reverse space-x-2 hover:opacity-80 transition-opacity"
+            className="flex items-center space-x-reverse space-x-2"
           >
-            <Logo width={100} height={40} />
+            <Logo />
           </Link>
 
           {/* Navigation */}

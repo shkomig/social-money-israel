@@ -1,13 +1,17 @@
-"use client"
+'use client'
 
-import React, {useEffect, useId, useMemo, useRef, useState} from "react"
+import React, { useEffect, useId, useMemo, useRef, useState } from 'react'
 
 // Keyboard helpers (exported for minimal unit tests and reuse)
 export function isToggleKey(key: string) {
-  return key === "Enter" || key === " " || key === "Spacebar"
+  return key === 'Enter' || key === ' ' || key === 'Spacebar'
 }
 
-export function getNextIndex(current: number, maxExclusive: number, delta: 1 | -1) {
+export function getNextIndex(
+  current: number,
+  maxExclusive: number,
+  delta: 1 | -1
+) {
   if (maxExclusive <= 0) return 0
   const next = (current + delta + maxExclusive) % maxExclusive
   return next
@@ -58,7 +62,7 @@ export default function HowItWorks({
   steps,
   tips,
   sources,
-  triggerLabel = "איך זה עובד?",
+  triggerLabel = 'איך זה עובד?',
   className,
 }: HowItWorksProps) {
   const [open, setOpen] = useState(false)
@@ -73,10 +77,10 @@ export default function HowItWorks({
   useEffect(() => {
     if (!open) return
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false)
+      if (e.key === 'Escape') setOpen(false)
     }
-    window.addEventListener("keydown", onKeyDown)
-    return () => window.removeEventListener("keydown", onKeyDown)
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
   }, [open])
 
   const onTriggerKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -87,35 +91,42 @@ export default function HowItWorks({
   }
 
   // Roving focus within lists by ArrowUp/ArrowDown (and ArrowRight/Left for convenience on RTL)
-  const makeRovingHandler = (listRef: React.RefObject<HTMLUListElement | null>) =>
+  const makeRovingHandler =
+    (listRef: React.RefObject<HTMLUListElement | null>) =>
     (e: React.KeyboardEvent) => {
       const list = listRef.current
       if (!list) return
-      const items = Array.from(list.querySelectorAll<HTMLElement>("[data-roving-item]"))
+      const items = Array.from(
+        list.querySelectorAll<HTMLElement>('[data-roving-item]')
+      )
       if (items.length === 0) return
 
-      const currentIndex = items.findIndex((el) => el === document.activeElement)
+      const currentIndex = items.findIndex(
+        (el) => el === document.activeElement
+      )
       if (currentIndex === -1) return
 
-      const goPrev = () => items[getNextIndex(currentIndex, items.length, -1)].focus()
-      const goNext = () => items[getNextIndex(currentIndex, items.length, +1)].focus()
+      const goPrev = () =>
+        items[getNextIndex(currentIndex, items.length, -1)].focus()
+      const goNext = () =>
+        items[getNextIndex(currentIndex, items.length, +1)].focus()
 
       switch (e.key) {
-        case "ArrowUp":
-        case "ArrowRight": // RTL-friendly
+        case 'ArrowUp':
+        case 'ArrowRight': // RTL-friendly
           e.preventDefault()
           goPrev()
           break
-        case "ArrowDown":
-        case "ArrowLeft": // RTL-friendly
+        case 'ArrowDown':
+        case 'ArrowLeft': // RTL-friendly
           e.preventDefault()
           goNext()
           break
-        case "Home":
+        case 'Home':
           e.preventDefault()
           items[0]?.focus()
           break
-        case "End":
+        case 'End':
           e.preventDefault()
           items[items.length - 1]?.focus()
           break
@@ -123,7 +134,10 @@ export default function HowItWorks({
     }
 
   return (
-    <section dir="rtl" className={"w-full max-w-screen-md " + (className ?? "") }>
+    <section
+      dir="rtl"
+      className={'w-full max-w-screen-md ' + (className ?? '')}
+    >
       <div className="rounded-lg border border-gray-200 bg-white shadow-sm">
         <button
           id={triggerId}
@@ -136,7 +150,10 @@ export default function HowItWorks({
           <span className="truncate">{triggerLabel}</span>
           <span
             aria-hidden="true"
-            className={"transition-transform duration-200 inline-block " + (open ? "rotate-180" : "rotate-0")}
+            className={
+              'transition-transform duration-200 inline-block ' +
+              (open ? 'rotate-180' : 'rotate-0')
+            }
           >
             ▼
           </span>
@@ -150,15 +167,21 @@ export default function HowItWorks({
             className="border-t border-gray-200 px-4 py-5"
           >
             <header className="mb-5">
-              <h2 className="text-xl font-bold leading-7 text-gray-900">{title}</h2>
+              <h2 className="text-xl font-bold leading-7 text-gray-900">
+                {title}
+              </h2>
               {subtitle && (
-                <p className="mt-1 text-sm leading-6 text-gray-600">{subtitle}</p>
+                <p className="mt-1 text-sm leading-6 text-gray-600">
+                  {subtitle}
+                </p>
               )}
             </header>
 
             {/* Steps */}
             <section className="mb-6">
-              <h3 className="mb-3 text-base font-semibold text-gray-900">שלבים לביצוע</h3>
+              <h3 className="mb-3 text-base font-semibold text-gray-900">
+                שלבים לביצוע
+              </h3>
               <ul
                 ref={stepsRef}
                 role="list"
@@ -173,7 +196,9 @@ export default function HowItWorks({
                     className="rounded-md border border-gray-200 bg-gray-50 p-3 leading-relaxed text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
                     aria-label={`שלב ${i + 1}: ${s.title}`}
                   >
-                    <div className="font-medium">{i + 1}. {s.title}</div>
+                    <div className="font-medium">
+                      {i + 1}. {s.title}
+                    </div>
                     <p className="mt-1 text-sm text-gray-700">{s.detail}</p>
                   </li>
                 ))}
@@ -183,7 +208,9 @@ export default function HowItWorks({
             {/* Tips */}
             {tips && tips.length > 0 && (
               <section className="mb-6">
-                <h3 className="mb-3 text-base font-semibold text-gray-900">טיפים חשובים</h3>
+                <h3 className="mb-3 text-base font-semibold text-gray-900">
+                  טיפים חשובים
+                </h3>
                 <ul
                   ref={tipsRef}
                   role="list"
@@ -207,7 +234,9 @@ export default function HowItWorks({
             {/* Sources */}
             {sources && sources.length > 0 && (
               <section>
-                <h3 className="mb-3 text-base font-semibold text-gray-900">מקורות רשמיים</h3>
+                <h3 className="mb-3 text-base font-semibold text-gray-900">
+                  מקורות רשמיים
+                </h3>
                 <ul
                   ref={sourcesRef}
                   role="list"
@@ -243,19 +272,26 @@ export default function HowItWorks({
 // These only run if NODE_ENV === 'test'
 function runMinimalHelperTests() {
   // isToggleKey
-  console.assert(isToggleKey("Enter") === true, "Enter should toggle")
-  console.assert(isToggleKey(" ") === true, "Space should toggle")
-  console.assert(isToggleKey("Spacebar") === true, "Legacy Spacebar should toggle")
-  console.assert(isToggleKey("A") === false, "A should not toggle")
+  console.assert(isToggleKey('Enter') === true, 'Enter should toggle')
+  console.assert(isToggleKey(' ') === true, 'Space should toggle')
+  console.assert(
+    isToggleKey('Spacebar') === true,
+    'Legacy Spacebar should toggle'
+  )
+  console.assert(isToggleKey('A') === false, 'A should not toggle')
 
   // getNextIndex wrap-around
-  console.assert(getNextIndex(0, 5, -1) === 4, "wrap prev from 0 -> 4")
-  console.assert(getNextIndex(4, 5, +1) === 0, "wrap next from 4 -> 0")
-  console.assert(getNextIndex(2, 5, +1) === 3, "2 + 1 -> 3")
-  console.assert(getNextIndex(2, 5, -1) === 1, "2 - 1 -> 1")
+  console.assert(getNextIndex(0, 5, -1) === 4, 'wrap prev from 0 -> 4')
+  console.assert(getNextIndex(4, 5, +1) === 0, 'wrap next from 4 -> 0')
+  console.assert(getNextIndex(2, 5, +1) === 3, '2 + 1 -> 3')
+  console.assert(getNextIndex(2, 5, -1) === 1, '2 - 1 -> 1')
 }
 
-if (typeof process !== "undefined" && process.env && process.env.NODE_ENV === "test") {
+if (
+  typeof process !== 'undefined' &&
+  process.env &&
+  process.env.NODE_ENV === 'test'
+) {
   // eslint-disable-next-line no-console
   runMinimalHelperTests()
 }

@@ -52,8 +52,14 @@ export default function MortgageRefinancePage() {
               'בצעו שתי סימולציות: יציבות ריבית מול עליית ריבית/מדד.',
             ]}
             sources={[
-              { label: 'בנק ישראל – מדריכי משכנתאות', url: 'https://www.boi.org.il' },
-              { label: 'טאבו/מרשם מקרקעין – טפסים ורישומים', url: 'https://www.gov.il' },
+              {
+                label: 'בנק ישראל – מדריכי משכנתאות',
+                url: 'https://www.boi.org.il',
+              },
+              {
+                label: 'טאבו/מרשם מקרקעין – טפסים ורישומים',
+                url: 'https://www.gov.il',
+              },
             ]}
           />
         </div>

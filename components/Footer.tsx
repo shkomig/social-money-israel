@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="md:col-span-2">
-            <Logo width={120} height={60} />
+            <Logo />
             <p className="mt-4 text-gray-600 text-sm leading-relaxed">
               כסף חברתי - פלטפורמה לחישובים פיננסיים וזכויות סוציאליות בישראל.
               אנו מספקים כלים מדויקים לחישוב החזרי מס, מענקי עבודה, ומחזור
