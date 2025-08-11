@@ -3,6 +3,12 @@
 import { useState } from 'react'
 
 export default function PensionProvidentCalculator() {
+  // Predefined Tailwind width classes in 5% increments to avoid inline styles
+  const WIDTH_CLASSES = [
+    'w-[0%]','w-[5%]','w-[10%]','w-[15%]','w-[20%]','w-[25%]','w-[30%]','w-[35%]','w-[40%]','w-[45%]',
+    'w-[50%]','w-[55%]','w-[60%]','w-[65%]','w-[70%]','w-[75%]','w-[80%]','w-[85%]','w-[90%]','w-[95%]','w-[100%]'
+  ] as const
+
   const [currentAge, setCurrentAge] = useState('')
   const [retirementAge, setRetirementAge] = useState('')
   const [monthlySalary, setMonthlySalary] = useState('')
@@ -19,15 +25,24 @@ export default function PensionProvidentCalculator() {
     replacementRatio: number
   } | null>(null)
 
-  const calculatePension = () => {
-    const age = parseFloat(currentAge)
-    const retirement = parseFloat(retirementAge)
-    const salary = parseFloat(monthlySalary)
-    const current = parseFloat(currentSavings) || 0
-    const contribution = parseFloat(monthlyContribution)
-    const returnRate = parseFloat(expectedReturn) / 100
+  // Parse numbers safely from inputs (treat empty/invalid as 0)
+  const toNumber = (v: string) => {
+    const n = parseFloat((v ?? '').toString().replace(/,/g, ''))
+    return Number.isFinite(n) ? n : 0
+  }
 
-    if (!age || !retirement || !salary || !contribution) return
+  const calculatePension = () => {
+    const age = toNumber(currentAge)
+    const retirement = toNumber(retirementAge)
+    const salary = toNumber(monthlySalary)
+    const current = toNumber(currentSavings)
+    const contributionInput = toNumber(monthlyContribution)
+    const returnRate = toNumber(expectedReturn) / 100
+
+    // Basic validations: require sensible age/retirement/salary, but allow 0 additional contribution
+    if (!Number.isFinite(age) || !Number.isFinite(retirement) || !Number.isFinite(salary)) return
+    if (age <= 0 || retirement <= 0 || salary <= 0) return
+    if (retirement <= age) return
 
     const yearsToRetirement = retirement - age
     const monthsToRetirement = yearsToRetirement * 12
@@ -35,8 +50,9 @@ export default function PensionProvidentCalculator() {
 
     // Calculate mandatory pension contributions (12.5% of salary)
     const mandatoryContribution = salary * 0.125
+    // Additional contribution is optional (can be 0). For pension mode, add mandatory 12.5%.
     const totalMonthlyContribution =
-      contribution + (calculationType === 'pension' ? mandatoryContribution : 0)
+      (calculationType === 'pension' ? mandatoryContribution : 0) + Math.max(0, contributionInput)
 
     // Future value calculation with compound interest
     let totalSavings = current
@@ -54,7 +70,7 @@ export default function PensionProvidentCalculator() {
       totalSavings += totalMonthlyContribution * monthsToRetirement
     }
 
-    const totalContributions = current + totalMonthlyContribution * monthsToRetirement
+  const totalContributions = current + totalMonthlyContribution * monthsToRetirement
     const investmentGain = totalSavings - totalContributions
 
     // Calculate monthly pension (assuming 4% withdrawal rate)
@@ -83,6 +99,12 @@ export default function PensionProvidentCalculator() {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount)
+  }
+
+  const widthClassFromRatio = (ratio: number) => {
+    const percent = Math.min(100, Math.max(0, ratio))
+    const idx = Math.round(percent / 5)
+    return WIDTH_CLASSES[Math.min(WIDTH_CLASSES.length - 1, Math.max(0, idx))]
   }
 
   return (
@@ -206,6 +228,7 @@ export default function PensionProvidentCalculator() {
           </div>
 
           <button
+            type="button"
             onClick={calculatePension}
             className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
           >
@@ -268,8 +291,7 @@ export default function PensionProvidentCalculator() {
                     : results.replacementRatio >= 50
                       ? 'bg-yellow-500'
                       : 'bg-red-500'
-                }`}
-                style={{ width: `${Math.min(100, results.replacementRatio)}%` }}
+                } ${widthClassFromRatio(results.replacementRatio)}`}
               ></div>
               <div className="absolute inset-0 flex items-center justify-center text-sm font-semibold text-white">
                 {results.replacementRatio.toFixed(1)}% מהשכר הנוכחי
