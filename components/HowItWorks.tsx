@@ -7,11 +7,7 @@ export function isToggleKey(key: string) {
   return key === 'Enter' || key === ' ' || key === 'Spacebar'
 }
 
-export function getNextIndex(
-  current: number,
-  maxExclusive: number,
-  delta: 1 | -1
-) {
+export function getNextIndex(current: number, maxExclusive: number, delta: 1 | -1) {
   if (maxExclusive <= 0) return 0
   const next = (current + delta + maxExclusive) % maxExclusive
   return next
@@ -92,24 +88,17 @@ export default function HowItWorks({
 
   // Roving focus within lists by ArrowUp/ArrowDown (and ArrowRight/Left for convenience on RTL)
   const makeRovingHandler =
-    (listRef: React.RefObject<HTMLUListElement | null>) =>
-    (e: React.KeyboardEvent) => {
+    (listRef: React.RefObject<HTMLUListElement | null>) => (e: React.KeyboardEvent) => {
       const list = listRef.current
       if (!list) return
-      const items = Array.from(
-        list.querySelectorAll<HTMLElement>('[data-roving-item]')
-      )
+      const items = Array.from(list.querySelectorAll<HTMLElement>('[data-roving-item]'))
       if (items.length === 0) return
 
-      const currentIndex = items.findIndex(
-        (el) => el === document.activeElement
-      )
+      const currentIndex = items.findIndex((el) => el === document.activeElement)
       if (currentIndex === -1) return
 
-      const goPrev = () =>
-        items[getNextIndex(currentIndex, items.length, -1)].focus()
-      const goNext = () =>
-        items[getNextIndex(currentIndex, items.length, +1)].focus()
+      const goPrev = () => items[getNextIndex(currentIndex, items.length, -1)].focus()
+      const goNext = () => items[getNextIndex(currentIndex, items.length, +1)].focus()
 
       switch (e.key) {
         case 'ArrowUp':
@@ -134,10 +123,7 @@ export default function HowItWorks({
     }
 
   return (
-    <section
-      dir="rtl"
-      className={'w-full max-w-screen-md ' + (className ?? '')}
-    >
+    <section dir="rtl" className={'w-full max-w-screen-md ' + (className ?? '')}>
       <div className="rounded-lg border border-gray-200 bg-white shadow-sm">
         <button
           id={triggerId}
@@ -151,8 +137,7 @@ export default function HowItWorks({
           <span
             aria-hidden="true"
             className={
-              'transition-transform duration-200 inline-block ' +
-              (open ? 'rotate-180' : 'rotate-0')
+              'transition-transform duration-200 inline-block ' + (open ? 'rotate-180' : 'rotate-0')
             }
           >
             ▼
@@ -167,21 +152,13 @@ export default function HowItWorks({
             className="border-t border-gray-200 px-4 py-5"
           >
             <header className="mb-5">
-              <h2 className="text-xl font-bold leading-7 text-gray-900">
-                {title}
-              </h2>
-              {subtitle && (
-                <p className="mt-1 text-sm leading-6 text-gray-600">
-                  {subtitle}
-                </p>
-              )}
+              <h2 className="text-xl font-bold leading-7 text-gray-900">{title}</h2>
+              {subtitle && <p className="mt-1 text-sm leading-6 text-gray-600">{subtitle}</p>}
             </header>
 
             {/* Steps */}
             <section className="mb-6">
-              <h3 className="mb-3 text-base font-semibold text-gray-900">
-                שלבים לביצוע
-              </h3>
+              <h3 className="mb-3 text-base font-semibold text-gray-900">שלבים לביצוע</h3>
               <ul
                 ref={stepsRef}
                 role="list"
@@ -208,9 +185,7 @@ export default function HowItWorks({
             {/* Tips */}
             {tips && tips.length > 0 && (
               <section className="mb-6">
-                <h3 className="mb-3 text-base font-semibold text-gray-900">
-                  טיפים חשובים
-                </h3>
+                <h3 className="mb-3 text-base font-semibold text-gray-900">טיפים חשובים</h3>
                 <ul
                   ref={tipsRef}
                   role="list"
@@ -234,9 +209,7 @@ export default function HowItWorks({
             {/* Sources */}
             {sources && sources.length > 0 && (
               <section>
-                <h3 className="mb-3 text-base font-semibold text-gray-900">
-                  מקורות רשמיים
-                </h3>
+                <h3 className="mb-3 text-base font-semibold text-gray-900">מקורות רשמיים</h3>
                 <ul
                   ref={sourcesRef}
                   role="list"
@@ -274,10 +247,7 @@ function runMinimalHelperTests() {
   // isToggleKey
   console.assert(isToggleKey('Enter') === true, 'Enter should toggle')
   console.assert(isToggleKey(' ') === true, 'Space should toggle')
-  console.assert(
-    isToggleKey('Spacebar') === true,
-    'Legacy Spacebar should toggle'
-  )
+  console.assert(isToggleKey('Spacebar') === true, 'Legacy Spacebar should toggle')
   console.assert(isToggleKey('A') === false, 'A should not toggle')
 
   // getNextIndex wrap-around
@@ -287,11 +257,6 @@ function runMinimalHelperTests() {
   console.assert(getNextIndex(2, 5, -1) === 1, '2 - 1 -> 1')
 }
 
-if (
-  typeof process !== 'undefined' &&
-  process.env &&
-  process.env.NODE_ENV === 'test'
-) {
-  // eslint-disable-next-line no-console
+if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'test') {
   runMinimalHelperTests()
 }

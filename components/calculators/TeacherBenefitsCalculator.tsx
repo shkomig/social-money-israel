@@ -2,14 +2,6 @@
 
 import { useState } from 'react'
 
-interface TeacherData {
-  workingYears: number
-  salary: number
-  teachingHours: number
-  hasAcademicDegree: boolean
-  degreeLevel: string
-}
-
 export default function TeacherBenefitsCalculator() {
   const [workingYears, setWorkingYears] = useState('')
   const [salary, setSalary] = useState('')
@@ -53,8 +45,7 @@ export default function TeacherBenefitsCalculator() {
     const teacherPension = monthlySalary * 0.15 * 12 // 15% for teachers
     const pensionContribution = teacherPension - regularPension
 
-    const totalBenefits =
-      tuitionSubsidy + vacationPay + travelAllowance + pensionContribution
+    const totalBenefits = tuitionSubsidy + vacationPay + travelAllowance + pensionContribution
     const monthlyBenefits = totalBenefits / 12
 
     setResults({
@@ -81,14 +72,10 @@ export default function TeacherBenefitsCalculator() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Personal Information */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            פרטים אישיים
-          </h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">פרטים אישיים</h3>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              שנות ותק בהוראה
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">שנות ותק בהוראה</label>
             <input
               type="number"
               value={workingYears}
@@ -127,9 +114,7 @@ export default function TeacherBenefitsCalculator() {
 
         {/* Academic Information */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            השכלה והכשרה
-          </h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">השכלה והכשרה</h3>
 
           <div>
             <label className="flex items-center space-x-reverse space-x-2">
@@ -139,17 +124,13 @@ export default function TeacherBenefitsCalculator() {
                 onChange={(e) => setHasAcademicDegree(e.target.checked)}
                 className="rounded border-gray-300 text-green-600 focus:ring-green-500"
               />
-              <span className="text-sm font-medium text-gray-700">
-                יש לי תואר אקדמי
-              </span>
+              <span className="text-sm font-medium text-gray-700">יש לי תואר אקדמי</span>
             </label>
           </div>
 
           {hasAcademicDegree && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                רמת התואר
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">רמת התואר</label>
               <select
                 value={degreeLevel}
                 onChange={(e) => setDegreeLevel(e.target.value)}
@@ -174,17 +155,13 @@ export default function TeacherBenefitsCalculator() {
       {/* Results */}
       {results && (
         <div className="border-t border-gray-200 pt-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">
-            זכויות והטבות שנתיות
-          </h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">זכויות והטבות שנתיות</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             <div className="bg-blue-50 rounded-lg p-4">
               <div className="flex items-center mb-2">
                 <span className="text-2xl ml-2">📚</span>
-                <div className="text-sm text-blue-600 font-medium">
-                  מלגת לימודים
-                </div>
+                <div className="text-sm text-blue-600 font-medium">מלגת לימודים</div>
               </div>
               <div className="text-xl font-bold text-blue-700">
                 {formatCurrency(results.tuitionSubsidy)}
@@ -195,54 +172,40 @@ export default function TeacherBenefitsCalculator() {
             <div className="bg-yellow-50 rounded-lg p-4">
               <div className="flex items-center mb-2">
                 <span className="text-2xl ml-2">🏖️</span>
-                <div className="text-sm text-yellow-600 font-medium">
-                  דמי חופשה
-                </div>
+                <div className="text-sm text-yellow-600 font-medium">דמי חופשה</div>
               </div>
               <div className="text-xl font-bold text-yellow-700">
                 {formatCurrency(results.vacationPay)}
               </div>
-              <div className="text-xs text-yellow-600 mt-1">
-                חופשת קיץ מוארכת
-              </div>
+              <div className="text-xs text-yellow-600 mt-1">חופשת קיץ מוארכת</div>
             </div>
 
             <div className="bg-purple-50 rounded-lg p-4">
               <div className="flex items-center mb-2">
                 <span className="text-2xl ml-2">🚗</span>
-                <div className="text-sm text-purple-600 font-medium">
-                  קצבת נסיעות
-                </div>
+                <div className="text-sm text-purple-600 font-medium">קצבת נסיעות</div>
               </div>
               <div className="text-xl font-bold text-purple-700">
                 {formatCurrency(results.travelAllowance)}
               </div>
-              <div className="text-xs text-purple-600 mt-1">
-                החזר נסיעה לעבודה
-              </div>
+              <div className="text-xs text-purple-600 mt-1">החזר נסיעה לעבודה</div>
             </div>
 
             <div className="bg-green-50 rounded-lg p-4">
               <div className="flex items-center mb-2">
                 <span className="text-2xl ml-2">🏦</span>
-                <div className="text-sm text-green-600 font-medium">
-                  פנסיה מוגברת
-                </div>
+                <div className="text-sm text-green-600 font-medium">פנסיה מוגברת</div>
               </div>
               <div className="text-xl font-bold text-green-700">
                 {formatCurrency(results.pensionContribution)}
               </div>
-              <div className="text-xs text-green-600 mt-1">
-                הפרשה נוספת (15% vs 12.5%)
-              </div>
+              <div className="text-xs text-green-600 mt-1">הפרשה נוספת (15% vs 12.5%)</div>
             </div>
 
             <div className="bg-indigo-50 rounded-lg p-4 md:col-span-2">
               <div className="flex items-center mb-2">
                 <span className="text-2xl ml-2">💰</span>
-                <div className="text-sm text-indigo-600 font-medium">
-                  סה"כ הטבות שנתיות
-                </div>
+                <div className="text-sm text-indigo-600 font-medium">סה"כ הטבות שנתיות</div>
               </div>
               <div className="text-2xl font-bold text-indigo-700">
                 {formatCurrency(results.totalBenefits)}
@@ -280,16 +243,12 @@ export default function TeacherBenefitsCalculator() {
                 },
               ].map((benefit, index) => (
                 <div key={index} className="flex items-center">
-                  <div className="w-24 text-sm text-gray-600">
-                    {benefit.name}
-                  </div>
+                  <div className="w-24 text-sm text-gray-600">{benefit.name}</div>
                   <div className="flex-1 bg-gray-200 rounded-full h-4 mx-3 relative overflow-hidden">
                     <div
                       className={`${benefit.color} h-4 rounded-full transition-all duration-700`}
                       style={{
-                        width: `${
-                          (benefit.value / results.totalBenefits) * 100
-                        }%`,
+                        width: `${(benefit.value / results.totalBenefits) * 100}%`,
                       }}
                     ></div>
                   </div>
@@ -308,14 +267,10 @@ export default function TeacherBenefitsCalculator() {
               <div>
                 <h4 className="font-semibold text-green-800 mb-2">מידע נוסף</h4>
                 <ul className="text-green-700 text-sm space-y-1">
-                  <li>
-                    • זכויות נוספות: ביטוח מקצועי, הנחות על פעילויות תרבות
-                  </li>
+                  <li>• זכויות נוספות: ביטוח מקצועי, הנחות על פעילויות תרבות</li>
                   <li>• השתלמויות מסובסדות: עד 100% החזר לקורסים מאושרים</li>
                   <li>• יום מחלה נוסף: 15 ימי מחלה לשנה (במקום 12)</li>
-                  <li>
-                    • פרישה מוקדמת: אפשרות לפרישה בגיל 60 עם ותק של 30 שנה
-                  </li>
+                  <li>• פרישה מוקדמת: אפשרות לפרישה בגיל 60 עם ותק של 30 שנה</li>
                 </ul>
               </div>
             </div>

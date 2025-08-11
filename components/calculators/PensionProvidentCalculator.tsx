@@ -2,15 +2,6 @@
 
 import { useState } from 'react'
 
-interface PensionData {
-  currentAge: number
-  retirementAge: number
-  monthlySalary: number
-  currentSavings: number
-  monthlyContribution: number
-  expectedReturn: number
-}
-
 export default function PensionProvidentCalculator() {
   const [currentAge, setCurrentAge] = useState('')
   const [retirementAge, setRetirementAge] = useState('')
@@ -63,8 +54,7 @@ export default function PensionProvidentCalculator() {
       totalSavings += totalMonthlyContribution * monthsToRetirement
     }
 
-    const totalContributions =
-      current + totalMonthlyContribution * monthsToRetirement
+    const totalContributions = current + totalMonthlyContribution * monthsToRetirement
     const investmentGain = totalSavings - totalContributions
 
     // Calculate monthly pension (assuming 4% withdrawal rate)
@@ -125,14 +115,10 @@ export default function PensionProvidentCalculator() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Personal Information */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            פרטים אישיים
-          </h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">פרטים אישיים</h3>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              גיל נוכחי
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">גיל נוכחי</label>
             <input
               type="number"
               value={currentAge}
@@ -143,9 +129,7 @@ export default function PensionProvidentCalculator() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              גיל פרישה מתוכנן
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">גיל פרישה מתוכנן</label>
             <input
               type="number"
               value={retirementAge}
@@ -171,14 +155,10 @@ export default function PensionProvidentCalculator() {
 
         {/* Savings Information */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            חיסכון והפרשות
-          </h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">חיסכון והפרשות</h3>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              חיסכון קיים (₪)
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">חיסכון קיים (₪)</label>
             <input
               type="number"
               value={currentSavings}
@@ -190,24 +170,19 @@ export default function PensionProvidentCalculator() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {calculationType === 'pension'
-                ? 'הפרשה חודשית נוספת (₪)'
-                : 'הפרשה חודשית (₪)'}
+              {calculationType === 'pension' ? 'הפרשה חודשית נוספת (₪)' : 'הפרשה חודשית (₪)'}
             </label>
             <input
               type="number"
               value={monthlyContribution}
               onChange={(e) => setMonthlyContribution(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-              placeholder={
-                calculationType === 'pension' ? 'למשל: 500' : 'למשל: 1000'
-              }
+              placeholder={calculationType === 'pension' ? 'למשל: 500' : 'למשל: 1000'}
             />
             {calculationType === 'pension' && (
               <p className="text-xs text-gray-500 mt-1">
                 הפרשה חובה של 12.5% מהשכר (
-                {formatCurrency((parseFloat(monthlySalary) || 0) * 0.125)})
-                תתווסף אוטומטית
+                {formatCurrency((parseFloat(monthlySalary) || 0) * 0.125)}) תתווסף אוטומטית
               </p>
             )}
           </div>
@@ -242,17 +217,13 @@ export default function PensionProvidentCalculator() {
       {/* Results */}
       {results && (
         <div className="border-t border-gray-200 pt-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">
-            תחזית פרישה
-          </h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">תחזית פרישה</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             <div className="bg-purple-50 rounded-lg p-4">
               <div className="flex items-center mb-2">
                 <span className="text-2xl ml-2">🏦</span>
-                <div className="text-sm text-purple-600 font-medium">
-                  סה"כ חיסכון בפרישה
-                </div>
+                <div className="text-sm text-purple-600 font-medium">סה"כ חיסכון בפרישה</div>
               </div>
               <div className="text-xl font-bold text-purple-700">
                 {formatCurrency(results.totalSavings)}
@@ -262,9 +233,7 @@ export default function PensionProvidentCalculator() {
             <div className="bg-green-50 rounded-lg p-4">
               <div className="flex items-center mb-2">
                 <span className="text-2xl ml-2">💰</span>
-                <div className="text-sm text-green-600 font-medium">
-                  קצבה חודשית
-                </div>
+                <div className="text-sm text-green-600 font-medium">קצבה חודשית</div>
               </div>
               <div className="text-xl font-bold text-green-700">
                 {formatCurrency(results.monthlyPension)}
@@ -277,9 +246,7 @@ export default function PensionProvidentCalculator() {
             <div className="bg-blue-50 rounded-lg p-4">
               <div className="flex items-center mb-2">
                 <span className="text-2xl ml-2">📈</span>
-                <div className="text-sm text-blue-600 font-medium">
-                  רווח מהשקעות
-                </div>
+                <div className="text-sm text-blue-600 font-medium">רווח מהשקעות</div>
               </div>
               <div className="text-xl font-bold text-blue-700">
                 {formatCurrency(results.investmentGain)}
@@ -292,17 +259,15 @@ export default function PensionProvidentCalculator() {
 
           {/* Replacement Ratio Gauge */}
           <div className="mb-6">
-            <h4 className="font-semibold text-gray-800 mb-3">
-              יחס החלפת הכנסה
-            </h4>
+            <h4 className="font-semibold text-gray-800 mb-3">יחס החלפת הכנסה</h4>
             <div className="bg-gray-200 rounded-full h-6 relative overflow-hidden">
               <div
                 className={`h-6 rounded-full transition-all duration-700 ${
                   results.replacementRatio >= 70
                     ? 'bg-green-500'
                     : results.replacementRatio >= 50
-                    ? 'bg-yellow-500'
-                    : 'bg-red-500'
+                      ? 'bg-yellow-500'
+                      : 'bg-red-500'
                 }`}
                 style={{ width: `${Math.min(100, results.replacementRatio)}%` }}
               ></div>
@@ -348,8 +313,8 @@ export default function PensionProvidentCalculator() {
               results.replacementRatio >= 70
                 ? 'bg-green-50 border border-green-200'
                 : results.replacementRatio >= 50
-                ? 'bg-yellow-50 border border-yellow-200'
-                : 'bg-red-50 border border-red-200'
+                  ? 'bg-yellow-50 border border-yellow-200'
+                  : 'bg-red-50 border border-red-200'
             }`}
           >
             <div className="flex items-start">
@@ -357,8 +322,8 @@ export default function PensionProvidentCalculator() {
                 {results.replacementRatio >= 70
                   ? '✅'
                   : results.replacementRatio >= 50
-                  ? '⚠️'
-                  : '❌'}
+                    ? '⚠️'
+                    : '❌'}
               </span>
               <div>
                 <h4
@@ -366,30 +331,30 @@ export default function PensionProvidentCalculator() {
                     results.replacementRatio >= 70
                       ? 'text-green-800'
                       : results.replacementRatio >= 50
-                      ? 'text-yellow-800'
-                      : 'text-red-800'
+                        ? 'text-yellow-800'
+                        : 'text-red-800'
                   }`}
                 >
                   {results.replacementRatio >= 70
                     ? 'מצוין! תכנון פרישה טוב'
                     : results.replacementRatio >= 50
-                    ? 'חיסכון בסיסי - כדאי לשפר'
-                    : 'חיסכון לא מספיק - דרוש שיפור משמעותי'}
+                      ? 'חיסכון בסיסי - כדאי לשפר'
+                      : 'חיסכון לא מספיק - דרוש שיפור משמעותי'}
                 </h4>
                 <p
                   className={`text-sm ${
                     results.replacementRatio >= 70
                       ? 'text-green-700'
                       : results.replacementRatio >= 50
-                      ? 'text-yellow-700'
-                      : 'text-red-700'
+                        ? 'text-yellow-700'
+                        : 'text-red-700'
                   }`}
                 >
                   {results.replacementRatio >= 70
                     ? 'החיסכון שלכם מספק רמת חיים נאותה בפרישה'
                     : results.replacementRatio >= 50
-                    ? 'כדאי להגדיל את ההפרשה החודשית לשיפור רמת החיים בפרישה'
-                    : 'מומלץ מאוד להגדיל את ההפרשה או להאריך את גיל הפרישה'}
+                      ? 'כדאי להגדיל את ההפרשה החודשית לשיפור רמת החיים בפרישה'
+                      : 'מומלץ מאוד להגדיל את ההפרשה או להאריך את גיל הפרישה'}
                 </p>
               </div>
             </div>

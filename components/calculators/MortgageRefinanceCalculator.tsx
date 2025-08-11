@@ -2,14 +2,6 @@
 
 import { useState } from 'react'
 
-interface MortgageData {
-  currentBalance: number
-  currentRate: number
-  newRate: number
-  remainingYears: number
-  refinancingCosts: number
-}
-
 export default function MortgageRefinanceCalculator() {
   const [currentBalance, setCurrentBalance] = useState('')
   const [currentRate, setCurrentRate] = useState('')
@@ -25,11 +17,7 @@ export default function MortgageRefinanceCalculator() {
     isWorthwhile: boolean
   } | null>(null)
 
-  const calculateMortgagePayment = (
-    principal: number,
-    rate: number,
-    years: number
-  ): number => {
+  const calculateMortgagePayment = (principal: number, rate: number, years: number): number => {
     const monthlyRate = rate / 100 / 12
     const numberOfPayments = years * 12
 
@@ -38,8 +26,7 @@ export default function MortgageRefinanceCalculator() {
     }
 
     return (
-      (principal *
-        (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments))) /
+      (principal * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments))) /
       (Math.pow(1 + monthlyRate, numberOfPayments) - 1)
     )
   }
@@ -53,11 +40,7 @@ export default function MortgageRefinanceCalculator() {
 
     if (!balance || !currentR || !newR || !years) return
 
-    const currentMonthlyPayment = calculateMortgagePayment(
-      balance,
-      currentR,
-      years
-    )
+    const currentMonthlyPayment = calculateMortgagePayment(balance, currentR, years)
     const newMonthlyPayment = calculateMortgagePayment(balance, newR, years)
     const monthlySavings = currentMonthlyPayment - newMonthlyPayment
     const totalSavings = monthlySavings * years * 12 - costs
@@ -88,14 +71,10 @@ export default function MortgageRefinanceCalculator() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Current Mortgage Details */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            פרטי המשכנתא הנוכחית
-          </h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">פרטי המשכנתא הנוכחית</h3>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              יתרת קרן (₪)
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">יתרת קרן (₪)</label>
             <input
               type="number"
               value={currentBalance}
@@ -106,9 +85,7 @@ export default function MortgageRefinanceCalculator() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              ריבית נוכחית (%)
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">ריבית נוכחית (%)</label>
             <input
               type="number"
               step="0.01"
@@ -135,14 +112,10 @@ export default function MortgageRefinanceCalculator() {
 
         {/* New Mortgage Details */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            פרטי המשכנתא החדשה
-          </h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">פרטי המשכנתא החדשה</h3>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              ריבית חדשה (%)
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">ריבית חדשה (%)</label>
             <input
               type="number"
               step="0.01"
@@ -154,9 +127,7 @@ export default function MortgageRefinanceCalculator() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              עלויות מחזור (₪)
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">עלויות מחזור (₪)</label>
             <input
               type="number"
               value={refinancingCosts}
@@ -164,9 +135,7 @@ export default function MortgageRefinanceCalculator() {
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
               placeholder="למשל: 15000"
             />
-            <p className="text-xs text-gray-500 mt-1">
-              כולל עמלות בנק, שמאי, עו"ד וביטוח
-            </p>
+            <p className="text-xs text-gray-500 mt-1">כולל עמלות בנק, שמאי, עו"ד וביטוח</p>
           </div>
 
           <button
@@ -181,24 +150,18 @@ export default function MortgageRefinanceCalculator() {
       {/* Results */}
       {results && (
         <div className="border-t border-gray-200 pt-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">
-            תוצאות החישוב
-          </h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">תוצאות החישוב</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <div className="bg-red-50 rounded-lg p-4 text-center">
-              <div className="text-sm text-red-600 font-medium mb-1">
-                תשלום נוכחי
-              </div>
+              <div className="text-sm text-red-600 font-medium mb-1">תשלום נוכחי</div>
               <div className="text-xl font-bold text-red-700">
                 {formatCurrency(results.currentMonthlyPayment)}
               </div>
             </div>
 
             <div className="bg-green-50 rounded-lg p-4 text-center">
-              <div className="text-sm text-green-600 font-medium mb-1">
-                תשלום חדש
-              </div>
+              <div className="text-sm text-green-600 font-medium mb-1">תשלום חדש</div>
               <div className="text-xl font-bold text-green-700">
                 {formatCurrency(results.newMonthlyPayment)}
               </div>
@@ -252,10 +215,7 @@ export default function MortgageRefinanceCalculator() {
             <div className="flex justify-between text-sm text-gray-600 mb-2">
               <span>התקדמות החיסכון</span>
               <span>
-                {Math.round(
-                  (results.monthlySavings / results.currentMonthlyPayment) * 100
-                )}
-                %
+                {Math.round((results.monthlySavings / results.currentMonthlyPayment) * 100)}%
               </span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-3">
@@ -268,10 +228,7 @@ export default function MortgageRefinanceCalculator() {
                 style={{
                   width: `${Math.min(
                     100,
-                    Math.abs(
-                      (results.monthlySavings / results.currentMonthlyPayment) *
-                        100
-                    )
+                    Math.abs((results.monthlySavings / results.currentMonthlyPayment) * 100),
                   )}%`,
                 }}
               ></div>
@@ -281,9 +238,7 @@ export default function MortgageRefinanceCalculator() {
           {/* Break Even Analysis */}
           {results.breakEvenMonths > 0 && (
             <div className="bg-yellow-50 rounded-lg p-4 mb-4">
-              <h4 className="font-semibold text-yellow-800 mb-2">
-                נקודת איזון
-              </h4>
+              <h4 className="font-semibold text-yellow-800 mb-2">נקודת איזון</h4>
               <p className="text-yellow-700">
                 החיסכון יכסה את עלויות המחזור תוך{' '}
                 <strong>{Math.ceil(results.breakEvenMonths)} חודשים</strong>
@@ -300,31 +255,23 @@ export default function MortgageRefinanceCalculator() {
             }`}
           >
             <div className="flex items-center">
-              <span className="text-2xl ml-3">
-                {results.isWorthwhile ? '✅' : '❌'}
-              </span>
+              <span className="text-2xl ml-3">{results.isWorthwhile ? '✅' : '❌'}</span>
               <div>
                 <h4
                   className={`font-semibold ${
                     results.isWorthwhile ? 'text-green-800' : 'text-red-800'
                   }`}
                 >
-                  {results.isWorthwhile
-                    ? 'מומלץ לבצע מחזור!'
-                    : 'לא מומלץ לבצע מחזור'}
+                  {results.isWorthwhile ? 'מומלץ לבצע מחזור!' : 'לא מומלץ לבצע מחזור'}
                 </h4>
                 <p
-                  className={`text-sm ${
-                    results.isWorthwhile ? 'text-green-700' : 'text-red-700'
-                  }`}
+                  className={`text-sm ${results.isWorthwhile ? 'text-green-700' : 'text-red-700'}`}
                 >
                   {results.isWorthwhile
-                    ? `החיסכון החודשי של ${formatCurrency(
-                        results.monthlySavings
-                      )} מצדיק את המחזור`
+                    ? `החיסכון החודשי של ${formatCurrency(results.monthlySavings)} מצדיק את המחזור`
                     : results.monthlySavings <= 400
-                    ? 'החיסכון החודשי נמוך מ-400₪ - לא מומלץ'
-                    : 'החיסכון הכולל שלילי בגלל עלויות המחזור'}
+                      ? 'החיסכון החודשי נמוך מ-400₪ - לא מומלץ'
+                      : 'החיסכון הכולל שלילי בגלל עלויות המחזור'}
                 </p>
               </div>
             </div>
