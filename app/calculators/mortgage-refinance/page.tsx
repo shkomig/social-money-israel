@@ -1,11 +1,11 @@
-
 import Layout from '@/components/Layout'
 import MortgageRefinanceCalculator from '@/components/calculators/MortgageRefinanceCalculator'
+import HowItWorks from '@/components/HowItWorks'
 
 export default function MortgageRefinancePage() {
   return (
     <Layout>
-      <div className="max-w-4xl mx-auto" dir="rtl">
+      <div dir="rtl" className="max-w-screen-md mx-auto p-4">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
             מחשבון מחזור משכנתא
@@ -13,6 +13,24 @@ export default function MortgageRefinancePage() {
           <p className="text-lg text-gray-600">
             בדקו אם כדאי לכם לבצע מחזור משכנתא וכמה תוכלו לחסוך
           </p>
+        </div>
+
+        <div className="mb-6">
+          <HowItWorks
+            title="איך זה עובד – מחזור משכנתא"
+            subtitle="בדקו כדאיות בשלושה צעדים"
+            steps={[
+              { title: 'מזינים פרטי משכנתא', detail: 'יתרה, ריבית נוכחית ושנים שנותרו' },
+              { title: 'משווים ריבית חדשה', detail: 'הכניסו ריבית חלופית ועלויות מחזור' },
+              { title: 'מקבלים החלטה', detail: 'בדקו חיסכון חודשי, נקודת איזון והאם זה משתלם' },
+            ]}
+            tips={[
+              'השוו הצעות מכמה בנקים',
+              'בדקו עמלות פירעון מוקדם',
+              'שקלו קיצור תקופה להגדלת החיסכון הכולל',
+            ]}
+            sources={[{ label: 'בנק ישראל – משכנתאות', url: 'https://www.boi.org.il' }]}
+          />
         </div>
 
         <MortgageRefinanceCalculator />
@@ -42,7 +60,7 @@ export default function MortgageRefinancePage() {
             <p>• התייעצו עם יועץ משכנתאות לפני החלטה</p>
           </div>
         </div>
-      </div>
+  </div>
     </Layout>
   )
 }
