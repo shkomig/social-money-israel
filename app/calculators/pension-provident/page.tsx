@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
 import Layout from '@/components/Layout'
 import PensionProvidentCalculator from '@/components/calculators/PensionProvidentCalculator'
+import HowItWorks from '@/components/HowItWorks'
 
 export default function PensionProvidentPage() {
   return (
     <Layout>
-      <div className="max-w-4xl mx-auto" dir="rtl">
+      <div dir="rtl" className="max-w-screen-md mx-auto p-4">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
             מחשבון פנסיה וקופת גמל
@@ -15,6 +15,27 @@ export default function PensionProvidentPage() {
           <p className="text-lg text-gray-600">
             חישוב תכנון פרישה והפרשות לעתיד פיננסי בטוח
           </p>
+        </div>
+
+        <div className="mb-6">
+          <HowItWorks
+            title="איך זה עובד – פנסיה וקופת גמל"
+            subtitle="תכנון, בדיקה, וביצוע"
+            steps={[
+              { title: 'בודקים הפקדות', detail: 'שיעורי הפרשה, שכר מבוטח ותקרות' },
+              { title: 'ממפים מוצרים', detail: 'קופות קיימות, דמי ניהול וביצועים' },
+              { title: 'מתכננים פרישה', detail: 'קצבה צפויה, הטבות מס, ופיזור אפיקים' },
+            ]}
+            tips={[
+              'השוו דמי ניהול באופן קבוע',
+              'בדקו שינוי מסלול השקעה לפי גיל וסיכון',
+              'נצלו הטבות מס להפקדות עצמאיות',
+            ]}
+            sources={[
+              { label: 'מסלקה פנסיונית', url: 'https://pensuni.com' },
+              { label: 'הר הכסף', url: 'https://itur.mof.gov.il' },
+            ]}
+          />
         </div>
 
         <PensionProvidentCalculator />

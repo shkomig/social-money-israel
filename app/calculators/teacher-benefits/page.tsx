@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
 import Layout from '@/components/Layout'
 import TeacherBenefitsCalculator from '@/components/calculators/TeacherBenefitsCalculator'
+import HowItWorks from '@/components/HowItWorks'
 
 export default function TeacherBenefitsPage() {
   return (
     <Layout>
-      <div className="max-w-4xl mx-auto" dir="rtl">
+      <div dir="rtl" className="max-w-screen-md mx-auto p-4">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
             מחשבון זכויות מורים
@@ -15,6 +15,27 @@ export default function TeacherBenefitsPage() {
           <p className="text-lg text-gray-600">
             חישוב זכויות וטבות ייחודיות למורים בישראל
           </p>
+        </div>
+
+        <div className="mb-6">
+          <HowItWorks
+            title="איך זה עובד – זכויות מורים"
+            subtitle="שלבים לקבלת ההטבות והזכויות"
+            steps={[
+              { title: 'ממפים זכויות', detail: 'בדקו הסכמים קיבוציים ותנאי העסקה' },
+              { title: 'אוספים מסמכים', detail: 'תלושי שכר, אישורי לימודים/הכשרות' },
+              { title: 'מגישים בקשות', detail: 'פנו למעסיק/משרד החינוך לפי הנהלים' },
+            ]}
+            tips={[
+              'בדקו ותק והשפעתו על השכר',
+              'הציגו אישורים בזמן כדי לא לפספס הטבות',
+              'היעזרו בוועד/ארגון המורים במקרה של אי-ודאות',
+            ]}
+            sources={[
+              { label: 'משרד החינוך', url: 'https://education.gov.il' },
+              { label: 'ארגון המורים', url: 'https://irgun.org.il' },
+            ]}
+          />
         </div>
 
         <TeacherBenefitsCalculator />
