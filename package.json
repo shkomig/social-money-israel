@@ -12,16 +12,19 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "stylelint": "stylelint \"**/*.{css,scss}\"",
-    "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix"
+    "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix",
+    "clean": "rd /s /q .next && rd /s /q node_modules && npm cache clean --force",
+    "dev:fast": "set WATCHPACK_POLLING=true&& next dev -p 3001"
   },
   "dependencies": {
     "chart.js": "^4.5.0",
     "next": "15.4.5",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+  "react-dom": "19.1.0",
+  "@tailwindcss/postcss": "^4",
+  "tailwindcss": "^4"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
     "@eslint/js": "^9.13.0",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -30,7 +33,6 @@
     "prettier": "^3.3.3",
     "stylelint": "^16.9.0",
     "stylelint-config-standard": "^36.0.0",
-    "tailwindcss": "^4",
     "typescript": "^5",
     "typescript-eslint": "^8.13.0"
   }
