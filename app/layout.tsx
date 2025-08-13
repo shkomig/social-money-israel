@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
+import { LOGO_VERSION } from '@/lib/constants'
 import './globals.css'
 
 const inter = Inter({
@@ -43,9 +44,9 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl">
       <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="alternate icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
+        <link rel="icon" href={`/favicon.svg?v=${LOGO_VERSION}`} type="image/svg+xml" />
+        <link rel="alternate icon" href={`/favicon.ico?v=${LOGO_VERSION}`} />
+        <link rel="apple-touch-icon" href={`/favicon.svg?v=${LOGO_VERSION}`} />
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
