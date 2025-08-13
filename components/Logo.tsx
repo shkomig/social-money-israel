@@ -1,16 +1,17 @@
 'use client'
 
 import React, { useCallback, useState } from 'react'
+import { LOGO_VERSION } from '@/lib/constants'
 
 export default function Logo() {
   // Try primary logo, then alternates; cache-bust to avoid stale cached zero-byte assets
   const sources = [
     // New official asset (please place the attached file at public/images/social-money-logo-official.png)
-    '/images/social-money-logo-official.png?v=20250812',
-    '/images/social-money-logo.png?v=20250812',
-    '/images/social-money-logo-new.png?v=20250812',
-  '/images/logo.png?v=20250812',
-  '/images/logo-backup.svg?v=20250812',
+    `/images/social-money-logo-official.png?v=${LOGO_VERSION}`,
+    `/images/social-money-logo.png?v=${LOGO_VERSION}`,
+    `/images/social-money-logo-new.png?v=${LOGO_VERSION}`,
+    `/images/logo.png?v=${LOGO_VERSION}`,
+    `/images/logo-backup.svg?v=${LOGO_VERSION}`,
   ] as const
 
   const [idx, setIdx] = useState(0)
