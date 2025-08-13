@@ -10,6 +10,13 @@ const nextConfig: NextConfig = {
   assetPrefix:
     envAssetPrefix && envAssetPrefix !== '/' ? envAssetPrefix : undefined,
   reactStrictMode: true,
+  images: {
+    dangerouslyAllowSVG: true,
+    remotePatterns: [
+      { protocol: 'https', hostname: '**' },
+      { protocol: 'http', hostname: '**' },
+    ],
+  },
 }
 
 export default nextConfig
