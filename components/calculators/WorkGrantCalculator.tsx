@@ -1,15 +1,32 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type ChangeEvent, type FC } from 'react'
 
-export default function WorkGrantCalculator() {
-  const [monthlyIncome, setMonthlyIncome] = useState('')
-  const [spouseIncome, setSpouseIncome] = useState('')
-  const [dependents, setDependents] = useState('')
-  const [result, setResult] = useState(null)
-  const [isEligible, setIsEligible] = useState(false)
+interface EligibleResult {
+  eligible: true
+  grantAmount: number
+  threshold: number
+  totalIncome: number
+  monthlyGrant: number
+}
 
-  const calculateGrant = () => {
+interface IneligibleResult {
+  eligible: false
+  threshold: number
+  totalIncome: number
+  excess: number
+}
+
+type GrantResult = EligibleResult | IneligibleResult
+
+const WorkGrantCalculator: FC = () => {
+  const [monthlyIncome, setMonthlyIncome] = useState<string>('')
+  const [spouseIncome, setSpouseIncome] = useState<string>('')
+  const [dependents, setDependents] = useState<string>('')
+  const [result, setResult] = useState<GrantResult | null>(null)
+  const [isEligible, setIsEligible] = useState<boolean>(false)
+
+  const calculateGrant = (): void => {
     const monthly = parseFloat(monthlyIncome) || 0
     const spouseMonthly = parseFloat(spouseIncome) || 0
     const numDependents = parseInt(dependents) || 0
@@ -58,7 +75,7 @@ export default function WorkGrantCalculator() {
     })
   }
 
-  const formatCurrency = (amount) => {
+  const formatCurrency = (amount: number): string => {
     return new Intl.NumberFormat('he-IL', {
       style: 'currency',
       currency: 'ILS',
@@ -98,7 +115,9 @@ export default function WorkGrantCalculator() {
               type="number"
               id="monthlyIncome"
               value={monthlyIncome}
-              onChange={(e) => setMonthlyIncome(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setMonthlyIncome(e.target.value)
+              }
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="הכנס הכנסה חודשית"
               min="0"
@@ -114,7 +133,9 @@ export default function WorkGrantCalculator() {
               type="number"
               id="spouseIncome"
               value={spouseIncome}
-              onChange={(e) => setSpouseIncome(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setSpouseIncome(e.target.value)
+              }
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="הכנס הכנסה חודשית של בן/בת זוג"
               min="0"
@@ -130,7 +151,9 @@ export default function WorkGrantCalculator() {
               type="number"
               id="dependents"
               value={dependents}
-              onChange={(e) => setDependents(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setDependents(e.target.value)
+              }
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="מספר ילדים או תלויים"
               min="0"
@@ -231,3 +254,5 @@ export default function WorkGrantCalculator() {
     </div>
   )
 }
+
+export default WorkGrantCalculator
