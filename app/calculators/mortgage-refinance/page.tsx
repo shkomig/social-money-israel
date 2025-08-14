@@ -1,15 +1,15 @@
 import Layout from '@/components/Layout'
 import MortgageRefinanceCalculator from '@/components/calculators/MortgageRefinanceCalculator'
 import HowItWorks from '@/components/HowItWorks'
+import RatesBoard from '@/components/RatesBoard'
 
 export default function MortgageRefinancePage() {
   return (
     <Layout>
       <div dir="rtl" className="max-w-screen-md mx-auto p-4">
+        <RatesBoard />
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            מחשבון מחזור משכנתא
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">מחשבון מחזור משכנתא</h1>
           <p className="text-lg text-gray-600">
             בדקו אם כדאי לכם לבצע מחזור משכנתא וכמה תוכלו לחסוך
           </p>
@@ -32,8 +32,7 @@ export default function MortgageRefinancePage() {
               },
               {
                 title: 'שלב 3 – הצעת תמהיל חדש',
-                detail:
-                  'חשב ריביות עדכניות, החזר חודשי, עלות כוללת, ותרחישים (עליית ריבית/מדד).',
+                detail: 'חשב ריביות עדכניות, החזר חודשי, עלות כוללת, ותרחישים (עליית ריבית/מדד).',
               },
               {
                 title: 'שלב 4 – השוואת הצעות',
@@ -42,8 +41,7 @@ export default function MortgageRefinancePage() {
               },
               {
                 title: 'שלב 5 – החלטה וביצוע',
-                detail:
-                  'חשבן חיסכון נטו אחרי כל העלויות. תאם שמאי ורישומים, בצע מעבר מסודר.',
+                detail: 'חשבן חיסכון נטו אחרי כל העלויות. תאם שמאי ורישומים, בצע מעבר מסודר.',
               },
             ]}
             tips={[
@@ -81,9 +79,7 @@ export default function MortgageRefinancePage() {
 
         {/* Additional Tips */}
         <div className="mt-8 bg-green-50 rounded-xl p-6">
-          <h3 className="text-lg font-semibold text-green-900 mb-3">
-            💰 טיפים לחיסכון נוסף:
-          </h3>
+          <h3 className="text-lg font-semibold text-green-900 mb-3">💰 טיפים לחיסכון נוסף:</h3>
           <div className="space-y-2 text-green-800">
             <p>• השוו הצעות ממספר בנקים</p>
             <p>• בדקו אפשרות למשכנתא משולבת (ריבית קבועה + משתנה)</p>
