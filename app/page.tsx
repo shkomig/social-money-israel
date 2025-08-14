@@ -9,14 +9,13 @@ export default function Home() {
         {/* Hero Section */}
         <div className="mb-12">
           <div className="flex justify-center mb-6">
-            <Logo />
+            <Logo className="h-24 md:h-28 lg:h-32" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             כסף חברתי - פלטפורמה לחישובים פיננסיים
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            מחשבונים מדויקים להחזרי מס, מענקי עבודה, מחזור משכנתאות וזכויות
-            סוציאליות בישראל
+            מחשבונים מדויקים להחזרי מס, מענקי עבודה, מחזור משכנתאות וזכויות סוציאליות בישראל
           </p>
         </div>
 
@@ -26,12 +25,9 @@ export default function Home() {
           <Link href="/calculators/tax-refund" className="group">
             <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200 hover:border-blue-300">
               <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                מחשבון החזר מס
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">מחשבון החזר מס</h3>
               <p className="text-gray-600 text-sm">
-                חישוב מדויק של החזר המס המגיע לכם, כולל זיכויים על ילדים, נכות
-                ונקודות זיכוי נוספות
+                חישוב מדויק של החזר המס המגיע לכם, כולל זיכויים על ילדים, נכות ונקודות זיכוי נוספות
               </p>
               <div className="mt-4 text-blue-600 font-medium group-hover:text-blue-700">
                 חשב עכשיו ←
@@ -43,12 +39,9 @@ export default function Home() {
           <Link href="/calculators/work-grant" className="group">
             <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200 hover:border-green-300">
               <div className="text-4xl mb-4">💼</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                מחשבון מענק עבודה
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">מחשבון מענק עבודה</h3>
               <p className="text-gray-600 text-sm">
-                בדיקת זכאות ומחשבון למענק עבודה (מס הכנסה שלילי) - עד 5,000₪
-                לשנה למשפחות עובדות
+                בדיקת זכאות ומחשבון למענק עבודה (מס הכנסה שלילי) - עד 5,000₪ לשנה למשפחות עובדות
               </p>
               <div className="mt-4 text-green-600 font-medium group-hover:text-green-700">
                 בדוק זכאות ←
@@ -60,9 +53,7 @@ export default function Home() {
           <Link href="/calculators/mortgage-refinance" className="group">
             <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200 hover:border-purple-300">
               <div className="text-4xl mb-4">🏠</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                מחשבון מחזור משכנתא
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">מחשבון מחזור משכנתא</h3>
               <p className="text-gray-600 text-sm">
                 חישוב החיסכון הפוטנציאלי ממחזור משכנתא קיימת לתנאים טובים יותר
               </p>
@@ -76,9 +67,7 @@ export default function Home() {
           <Link href="/calculators/pension-provident" className="group">
             <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200 hover:border-orange-300">
               <div className="text-4xl mb-4">🏦</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                מחשבון פנסיה וקופת גמל
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">מחשבון פנסיה וקופת גמל</h3>
               <p className="text-gray-600 text-sm">
                 תכנון פנסיוני וחישוב תשואות קופות גמל להשלמת הכנסה
               </p>
@@ -92,9 +81,7 @@ export default function Home() {
           <Link href="/calculators/teacher-benefits" className="group">
             <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200 hover:border-indigo-300">
               <div className="text-4xl mb-4">🎓</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                מחשבון זכויות מורים
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">מחשבון זכויות מורים</h3>
               <p className="text-gray-600 text-sm">
                 חישוב זכויות מיוחדות למורים ועובדי הוראה, כולל הטבות מס ופנסיה
               </p>
@@ -108,12 +95,9 @@ export default function Home() {
           <Link href="/resources" className="group">
             <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200 hover:border-teal-300">
               <div className="text-4xl mb-4">📚</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                משאבים וזכויות
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">משאבים וזכויות</h3>
               <p className="text-gray-600 text-sm">
-                מידע מקיף על זכויות סוציאליות, טבלאות מס וקישורים לאתרים
-                ממשלתיים
+                מידע מקיף על זכויות סוציאליות, טבלאות מס וקישורים לאתרים ממשלתיים
               </p>
               <div className="mt-4 text-teal-600 font-medium group-hover:text-teal-700">
                 צפה במשאבים ←
@@ -124,26 +108,20 @@ export default function Home() {
 
         {/* Features Section */}
         <div className="bg-white rounded-xl shadow-sm p-8 mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            למה לבחור בכסף חברתי?
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">למה לבחור בכסף חברתי?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="text-3xl mb-3">✅</div>
-              <h3 className="font-semibold text-gray-900 mb-2">
-                מחשבונים מדויקים
-              </h3>
+              <h3 className="font-semibold text-gray-900 mb-2">מחשבונים מדויקים</h3>
               <p className="text-gray-600 text-sm">
-                כל החישובים מבוססים על חוקי המס הישראליים העדכניים לשנת
-                2024-2025
+                כל החישובים מבוססים על חוקי המס הישראליים העדכניים לשנת 2024-2025
               </p>
             </div>
             <div className="text-center">
               <div className="text-3xl mb-3">🔒</div>
               <h3 className="font-semibold text-gray-900 mb-2">פרטיות מלאה</h3>
               <p className="text-gray-600 text-sm">
-                כל החישובים מתבצעים במכשיר שלכם - המידע לא נשמר או נשלח לשרתים
-                חיצוניים
+                כל החישובים מתבצעים במכשיר שלכם - המידע לא נשמר או נשלח לשרתים חיצוניים
               </p>
             </div>
             <div className="text-center">

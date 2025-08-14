@@ -3,11 +3,15 @@
 import React, { useCallback, useState } from 'react'
 import { LOGO_VERSION } from '@/lib/constants'
 
-export default function Logo() {
+type LogoProps = {
+  className?: string
+}
+
+export default function Logo({ className }: LogoProps) {
   // Try primary logo, then alternates; cache-bust to avoid stale cached zero-byte assets
   const sources = [
-    // New official asset (please place the attached file at public/images/social-money-logo-official.png)
     `/images/social-money-logo-official.png?v=${LOGO_VERSION}`,
+    `/logo.png?v=${LOGO_VERSION}`, // ← נוספה בדיקה ל-root /logo.png
     `/images/social-money-logo.png?v=${LOGO_VERSION}`,
     `/images/social-money-logo-new.png?v=${LOGO_VERSION}`,
     `/images/logo.png?v=${LOGO_VERSION}`,
@@ -15,16 +19,18 @@ export default function Logo() {
   ] as const
 
   const [idx, setIdx] = useState(0)
-  const handleError = useCallback(() => setIdx((i) => Math.min(i + 1, sources.length - 1)), [])
+  const handleError = useCallback(() => {
+    setIdx((i) => (i < sources.length - 1 ? i + 1 : i))
+  }, [])
 
   return (
     <img
       src={sources[idx]}
       alt="כסף חברתי — הלוגו הרשמי"
-      className="select-none h-10 w-auto"
+      className={`select-none h-10 w-auto ${className ?? ''}`}
       decoding="async"
       loading="eager"
-      draggable="false"
+      draggable={false}
       onError={handleError}
     />
   )

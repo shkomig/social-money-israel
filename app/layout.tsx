@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { LOGO_VERSION } from '@/lib/constants'
 import './globals.css'
-
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -11,8 +10,7 @@ export const metadata: Metadata = {
   title: 'כסף חברתי - מחשבונים פיננסיים וזכויות סוציאליות',
   description:
     'פלטפורמה מתקדמת למחשבונים פיננסיים בישראל: החזר מס, מענק עבודה, מחזור משכנתאות וזכויות סוציאליות. כלים מדויקים ומעודכנים לשנת 2024-2025.',
-  keywords:
-    'החזר מס, מענק עבודה, מחזור משכנתא, זכויות נכות, פנסיה, קופת גמל, מחשבונים פיננסיים',
+  keywords: 'החזר מס, מענק עבודה, מחזור משכנתא, זכויות נכות, פנסיה, קופת גמל, מחשבונים פיננסיים',
   authors: [{ name: 'כסף חברתי' }],
   robots: 'index, follow',
   openGraph: {
