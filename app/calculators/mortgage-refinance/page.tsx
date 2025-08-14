@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout'
 import MortgageRefinanceCalculator from '@/components/calculators/MortgageRefinanceCalculator'
 import HowItWorks from '@/components/HowItWorks'
+import EarlyRepaymentEstimator from '@/components/EarlyRepaymentEstimator'
 
 export default function MortgageRefinancePage() {
   return (
@@ -65,6 +66,8 @@ export default function MortgageRefinancePage() {
         </div>
 
         <MortgageRefinanceCalculator />
+
+        <EarlyRepaymentEstimator />
 
         {/* Educational Content */}
         <div className="mt-12 bg-blue-50 rounded-xl p-6">
