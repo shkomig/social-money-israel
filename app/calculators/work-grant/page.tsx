@@ -7,38 +7,21 @@ export default function WorkGrantPage() {
     <Layout>
       <div dir="rtl" className="max-w-screen-md mx-auto p-4">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            מחשבון מענק עבודה
-          </h1>
-          <p className="text-lg text-gray-600">
-            בדיקת זכאות למענק עבודה (מס הכנסה שלילי) למשפחות עובדות בעלות הכנסה
-            נמוכה
-          </p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">מחשבון מענק עבודה</h1>
+          <p className="text-lg text-gray-600">בדיקת זכאות למענק עבודה</p>
         </div>
 
         <div className="mb-6">
           <HowItWorks
-            title="איך זה עובד – מענק עבודה"
-            subtitle="בדיקת זכאות והגשה"
+            title="מענק עבודה – איך זה עובד"
+            subtitle="דוגמה קצרה"
             steps={[
-              { title: 'בודקים הכנסה', detail: 'הזן הכנסות שנתיות ומשפחתיות' },
-              {
-                title: 'מחשבים זכאות',
-                detail: 'קבלו אומדן מענק לפי הקריטריונים',
-              },
-              {
-                title: 'מגישים בקשה',
-                detail: 'הגישו באתר הרשמי וקבלו העברה לחשבון',
-              },
+              { title: 'בדיקת זכאות', detail: 'תיאור קצר' },
+              { title: 'הגשת בקשה', detail: 'תיאור קצר' },
+              { title: 'קבלת תשלום', detail: 'תיאור קצר' },
             ]}
-            tips={[
-              'בדקו מצב משפחתי מעודכן',
-              'שמרו תלושי שכר וטפסי 106',
-              'ודאו פרטי חשבון בנק נכונים',
-            ]}
-            sources={[
-              { label: 'רשות המסים – מענק עבודה', url: 'https://tax.gov.il' },
-            ]}
+            tips={['שמרו תלושי שכר', 'בדקו פרטי חשבון בנק']}
+            sources={[{ label: 'רשות המסים', url: 'https://tax.gov.il' }]}
           />
         </div>
 
@@ -47,3 +30,4 @@ export default function WorkGrantPage() {
     </Layout>
   )
 }
+
