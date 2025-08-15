@@ -1,5 +1,5 @@
 {
-	"$schema": "https://json.schemastore.org/vscode/tasks.json",
+  "$schema": "https://json.schemastore.org/vscode/tasks.json",
   "version": "2.0.0",
   "tasks": [
     {
@@ -35,46 +35,23 @@
       ],
       "group": "build",
       "problemMatcher": []
-		}
-	]
-}
-{
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"label": "Dev: Safe (3001)",
-			"type": "shell",
-			"command": "powershell",
-			"args": [
-				"-NoLogo",
-				"-NoProfile",
-				"-ExecutionPolicy",
-				"Bypass",
-				"-File",
-				"${workspaceFolder}/scripts/dev-reset.ps1",
-				"-Port",
-				"3001"
-			],
-			"isBackground": false,
-			"problemMatcher": [],
-			"group": "build"
-		},
-		{
-			"label": "Dev: Safe (3001)",
-			"type": "shell",
-			"command": "powershell",
-			"args": [
-				"-NoLogo",
-				"-NoProfile",
-				"-ExecutionPolicy",
-				"Bypass",
-				"-File",
-				"${workspaceFolder}/scripts/dev-reset.ps1",
-				"-Port",
-				"3001"
-			],
-			"isBackground": false,
-			"group": "build"
-		}
-	]
+    },
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "group": "build",
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "Start: Prod (3001)",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "start:3001"],
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
 }

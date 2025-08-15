@@ -63,9 +63,9 @@ export default function MortgageRefinancePage() {
           />
         </div>
 
-  <MortgageRefinanceCalculator />
+        <MortgageRefinanceCalculator />
 
-  <EarlyRepaymentEstimator />
+        <EarlyRepaymentEstimator />
 
         {/* Educational Content */}
         <div className="mt-12 bg-blue-50 rounded-xl p-6">

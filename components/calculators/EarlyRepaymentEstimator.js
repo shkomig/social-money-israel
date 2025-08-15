@@ -1,1 +1,1 @@
-export { default } from './EarlyRepaymentEstimator'
+export { default } from './EarlyRepaymentEstimator.tsx'

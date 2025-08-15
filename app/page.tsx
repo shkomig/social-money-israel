@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import Logo from '@/components/Logo'
+import HeroVideo from '@/components/HeroVideo'
 
 export default function Home() {
   return (
@@ -17,6 +18,11 @@ export default function Home() {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             מחשבונים מדויקים להחזרי מס, מענקי עבודה, מחזור משכנתאות וזכויות סוציאליות בישראל
           </p>
+        </div>
+
+        {/* Intro Video */}
+        <div className="mb-12">
+          <HeroVideo src="/video/social-money_intro_30s_1080x1920.mp4.mp4" />
         </div>
 
         {/* Calculator Cards */}

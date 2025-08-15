@@ -1,5 +1,10 @@
 param(
-  [int]$Port = 3001
+  [int]$Port = 3001,
+  [switch]$OpenBrowser,
+  [string]$Url,
+  [int]$TimeoutSec = 25,
+  [string]$Script,
+  [switch]$Prod
 )
 
 Write-Host "[dev-reset] Using port $Port" -ForegroundColor Cyan
@@ -8,9 +13,14 @@ Write-Host "[dev-reset] Using port $Port" -ForegroundColor Cyan
 try {
   $conns = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue
   if ($conns) {
-    $pids = $conns | Select-Object -ExpandProperty OwningProcess -Unique
-    foreach ($pid in $pids) {
-  try { Stop-Process -Id $pid -Force -ErrorAction Stop; Write-Host "[dev-reset] Killed PID ${pid}" -ForegroundColor Yellow } catch { Write-Host "[dev-reset] Failed to kill PID ${pid}: $($_.Exception.Message)" -ForegroundColor Red }
+    $procIds = $conns | Select-Object -ExpandProperty OwningProcess -Unique
+    foreach ($procId in $procIds) {
+      try {
+        Stop-Process -Id $procId -Force -ErrorAction Stop
+        Write-Host "[dev-reset] Killed PID ${procId}" -ForegroundColor Yellow
+      } catch {
+        Write-Host "[dev-reset] Failed to kill PID ${procId}: $($_.Exception.Message)" -ForegroundColor Red
+      }
     }
   }
 } catch { Write-Host "[dev-reset] Query connections failed: $($_.Exception.Message)" -ForegroundColor Red }
@@ -31,18 +41,50 @@ Push-Location $workDir
 # Prefer IPv4 127.0.0.1 to avoid IPv6/localhost quirks
 $env:WATCHPACK_POLLING = 'true'
 
-# Use npm.cmd directly
-Start-Process -FilePath "npm.cmd" -ArgumentList "run","dev:$Port" -WorkingDirectory $workDir -NoNewWindow
+# Choose npm script to run
+$scriptToRun = if ([string]::IsNullOrWhiteSpace($Script)) { "dev:$Port" } else { $Script }
+$startScript = if ($Prod) { "start:$Port" } else { $scriptToRun }
 
-# Give server time to boot
-Start-Sleep -Seconds 6
+# Build in prod mode, else just start dev
+if ($Prod) {
+  Write-Host "[dev-reset] Building production app..." -ForegroundColor Cyan
+  & npm.cmd run build
+}
 
-# Probe
-try {
-  $resp = (Invoke-WebRequest -UseBasicParsing "http://127.0.0.1:$Port/").StatusCode
-  Write-Host "[dev-reset] GET / => $resp" -ForegroundColor Green
-} catch {
-  Write-Host "[dev-reset] Probe failed: $($_.Exception.Message)" -ForegroundColor Red
+# Use npm.cmd directly to start
+Start-Process -FilePath "npm.cmd" -ArgumentList "run","$startScript" -WorkingDirectory $workDir -NoNewWindow
+
+if (-not $Url -or [string]::IsNullOrWhiteSpace($Url)) { $Url = "http://127.0.0.1:$Port/" }
+
+# Always probe the root to avoid triggering heavy route builds during startup
+$probeUrl = "http://127.0.0.1:$Port/"
+
+# Probe with retries until up or timeout
+$deadline = (Get-Date).AddSeconds($TimeoutSec)
+$up = $false
+do {
+  try {
+    $resp = (Invoke-WebRequest -UseBasicParsing $probeUrl -TimeoutSec 5).StatusCode
+    if ($resp -ge 200 -and $resp -lt 500) {
+      $up = $true
+      Write-Host "[dev-reset] GET $probeUrl => $resp" -ForegroundColor Green
+      break
+    }
+  } catch {
+    # Silent retry
+  }
+  Start-Sleep -Milliseconds 600
+} while((Get-Date) -lt $deadline)
+
+if (-not $up) {
+  Write-Host "[dev-reset] Server not responding at $Url within ${TimeoutSec}s" -ForegroundColor Yellow
+} elseif ($OpenBrowser) {
+  try {
+    Write-Host "[dev-reset] Opening browser: $Url" -ForegroundColor Cyan
+    Start-Process $Url | Out-Null
+  } catch {
+    Write-Host "[dev-reset] Failed to open browser: $($_.Exception.Message)" -ForegroundColor Red
+  }
 }
 
 Pop-Location
