@@ -1,0 +1,80 @@
+{
+	"$schema": "https://json.schemastore.org/vscode/tasks.json",
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Dev: Safe (3001)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoLogo",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/dev-reset.ps1",
+        "-Port",
+        "3001"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Dev: Safe (3010)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoLogo",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/dev-reset.ps1",
+        "-Port",
+        "3010"
+      ],
+      "group": "build",
+      "problemMatcher": []
+		}
+	]
+}
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Dev: Safe (3001)",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoLogo",
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/scripts/dev-reset.ps1",
+				"-Port",
+				"3001"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Dev: Safe (3001)",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoLogo",
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/scripts/dev-reset.ps1",
+				"-Port",
+				"3001"
+			],
+			"isBackground": false,
+			"group": "build"
+		}
+	]
+}

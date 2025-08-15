@@ -3,11 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev --turbopack",
-  "dev:3001": "next dev -H 0.0.0.0 -p 3001 --turbopack",
+    "dev": "cross-env WATCHPACK_POLLING=true next dev --turbopack",
+    "dev:3001": "cross-env WATCHPACK_POLLING=true next dev -H 127.0.0.1 -p 3001 --turbopack",
+    "dev:3010": "cross-env WATCHPACK_POLLING=true next dev -H 127.0.0.1 -p 3010 --turbopack",
+    "dev:safe": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-reset.ps1 -Port 3001",
+    "dev:safe:3010": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-reset.ps1 -Port 3010",
     "build": "next build",
-  "start": "next start",
-  "start:3001": "next start -H 0.0.0.0 -p 3001",
+    "start": "next start",
+    "start:3001": "cross-env WATCHPACK_POLLING=true next start -H 127.0.0.1 -p 3001",
+    "start:3010": "cross-env WATCHPACK_POLLING=true next start -H 127.0.0.1 -p 3010",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit -p tsconfig.json",
@@ -21,6 +25,7 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "@tailwindcss/postcss": "^4",
     "@eslint/js": "^9.13.0",
     "@types/node": "^20",
