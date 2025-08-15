@@ -7,7 +7,7 @@ export default function TeacherBenefitsCalculator() {
   const [salary, setSalary] = useState('')
   const [teachingHours, setTeachingHours] = useState('')
   const [hasAcademicDegree, setHasAcademicDegree] = useState(false)
-  const [degreeLevel, setDegreeLevel] = useState('bachelor')
+  const [degreeLevel, setDegreeLevel] = useState<'bachelor' | 'master' | 'phd'>('bachelor')
   const [results, setResults] = useState<{
     tuitionSubsidy: number
     vacationPay: number
@@ -17,33 +17,45 @@ export default function TeacherBenefitsCalculator() {
     monthlyBenefits: number
   } | null>(null)
 
+  // המרה בטוחה למספר
+  const toNum = (v: string) => {
+    const n = Number(v)
+    return Number.isFinite(n) ? n : 0
+  }
+
   const calculateBenefits = () => {
-    const years = parseFloat(workingYears)
-    const monthlySalary = parseFloat(salary)
-    const hours = parseFloat(teachingHours)
+    const years = toNum(workingYears)
+    const monthlySalary = toNum(salary)
+    const hours = toNum(teachingHours)
 
-    if (!years || !monthlySalary || !hours) return
+    // ולידציה בסיסית
+    if (years <= 0 || monthlySalary <= 0 || hours <= 0) {
+      setResults(null)
+      return
+    }
 
-    // Tuition subsidy calculation (up to 75% based on years of service)
-    const maxSubsidy = 25000 // Max annual tuition subsidy
-    let subsidyRate = Math.min(0.75, 0.3 + years * 0.05) // Increases with years
-    if (degreeLevel === 'master') subsidyRate = Math.min(0.8, subsidyRate + 0.1)
-    if (degreeLevel === 'phd') subsidyRate = Math.min(0.9, subsidyRate + 0.2)
+    // Tuition subsidy (עד 75%) + תוספת רק אם יש תואר
+    const maxSubsidy = 25_000
+    let subsidyRate = Math.min(0.75, 0.3 + years * 0.05)
+    if (hasAcademicDegree) {
+      if (degreeLevel === 'master') subsidyRate = Math.min(0.8, subsidyRate + 0.1)
+      if (degreeLevel === 'phd') subsidyRate = Math.min(0.9, subsidyRate + 0.2)
+    }
     const tuitionSubsidy = maxSubsidy * subsidyRate
 
-    // Vacation pay (based on salary and years)
-    const vacationDays = Math.min(60, 45 + years) // Max 60 days
+    // Vacation pay (הערכה לפי שכר וותק)
+    const vacationDays = Math.min(60, Math.max(0, 45 + years)) // 0..60
     const dailySalary = monthlySalary / 22
     const vacationPay = dailySalary * vacationDays
 
-    // Travel allowance (based on distance and working days)
-    const baseTravel = 150 // Base monthly travel allowance
-    const travelAllowance = baseTravel * 12
+    // Travel allowance (שנתי)
+    const baseTravelMonthly = 150
+    const travelAllowance = baseTravelMonthly * 12
 
-    // Enhanced pension contribution (higher than regular employees)
-    const regularPension = monthlySalary * 0.125 * 12 // 12.5% regular
-    const teacherPension = monthlySalary * 0.15 * 12 // 15% for teachers
-    const pensionContribution = teacherPension - regularPension
+    // Enhanced pension contribution (15% מול 12.5%)
+    const regularPension = monthlySalary * 0.125 * 12
+    const teacherPension = monthlySalary * 0.15 * 12
+    const pensionContribution = Math.max(0, teacherPension - regularPension)
 
     const totalBenefits = tuitionSubsidy + vacationPay + travelAllowance + pensionContribution
     const monthlyBenefits = totalBenefits / 12
@@ -58,17 +70,16 @@ export default function TeacherBenefitsCalculator() {
     })
   }
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('he-IL', {
+  const formatCurrency = (amount: number) =>
+    new Intl.NumberFormat('he-IL', {
       style: 'currency',
       currency: 'ILS',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount)
-  }
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+    <div dir="rtl" className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Personal Information */}
         <div className="space-y-4">
@@ -78,6 +89,9 @@ export default function TeacherBenefitsCalculator() {
             <label className="block text-sm font-medium text-gray-700 mb-2">שנות ותק בהוראה</label>
             <input
               type="number"
+              inputMode="numeric"
+              min={0}
+              step="1"
               value={workingYears}
               onChange={(e) => setWorkingYears(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
@@ -91,6 +105,9 @@ export default function TeacherBenefitsCalculator() {
             </label>
             <input
               type="number"
+              inputMode="decimal"
+              min={0}
+              step="100"
               value={salary}
               onChange={(e) => setSalary(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
@@ -104,6 +121,9 @@ export default function TeacherBenefitsCalculator() {
             </label>
             <input
               type="number"
+              inputMode="numeric"
+              min={0}
+              step="1"
               value={teachingHours}
               onChange={(e) => setTeachingHours(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
@@ -133,7 +153,7 @@ export default function TeacherBenefitsCalculator() {
               <label className="block text-sm font-medium text-gray-700 mb-2">רמת התואר</label>
               <select
                 value={degreeLevel}
-                onChange={(e) => setDegreeLevel(e.target.value)}
+                onChange={(e) => setDegreeLevel(e.target.value as 'bachelor' | 'master' | 'phd')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
               >
                 <option value="bachelor">תואר ראשון (B.A/B.Ed)</option>
@@ -144,6 +164,7 @@ export default function TeacherBenefitsCalculator() {
           )}
 
           <button
+            type="button"
             onClick={calculateBenefits}
             className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
           >
@@ -154,7 +175,7 @@ export default function TeacherBenefitsCalculator() {
 
       {/* Results */}
       {results && (
-        <div className="border-t border-gray-200 pt-6">
+        <div className="border-t border-gray-200 pt-6" aria-live="polite">
           <h3 className="text-xl font-semibold text-gray-900 mb-4">זכויות והטבות שנתיות</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
@@ -221,42 +242,30 @@ export default function TeacherBenefitsCalculator() {
             <h4 className="font-semibold text-gray-800 mb-3">פירוט ההטבות</h4>
             <div className="space-y-2">
               {[
-                {
-                  name: 'מלגת לימודים',
-                  value: results.tuitionSubsidy,
-                  color: 'bg-blue-500',
-                },
-                {
-                  name: 'דמי חופשה',
-                  value: results.vacationPay,
-                  color: 'bg-yellow-500',
-                },
-                {
-                  name: 'קצבת נסיעות',
-                  value: results.travelAllowance,
-                  color: 'bg-purple-500',
-                },
-                {
-                  name: 'פנסיה מוגברת',
-                  value: results.pensionContribution,
-                  color: 'bg-green-500',
-                },
-              ].map((benefit, index) => (
-                <div key={index} className="flex items-center">
-                  <div className="w-24 text-sm text-gray-600">{benefit.name}</div>
-                  <div className="flex-1 bg-gray-200 rounded-full h-4 mx-3 relative overflow-hidden">
-                    <div
-                      className={`${benefit.color} h-4 rounded-full transition-all duration-700`}
-                      style={{
-                        width: `${(benefit.value / results.totalBenefits) * 100}%`,
-                      }}
-                    ></div>
+                { name: 'מלגת לימודים', value: results.tuitionSubsidy, color: 'bg-blue-500' },
+                { name: 'דמי חופשה', value: results.vacationPay, color: 'bg-yellow-500' },
+                { name: 'קצבת נסיעות', value: results.travelAllowance, color: 'bg-purple-500' },
+                { name: 'פנסיה מוגברת', value: results.pensionContribution, color: 'bg-green-500' },
+              ].map((benefit, index) => {
+                const pct =
+                  results.totalBenefits > 0
+                    ? Math.max(0, Math.min(100, (benefit.value / results.totalBenefits) * 100))
+                    : 0
+                return (
+                  <div key={index} className="flex items-center">
+                    <div className="w-24 text-sm text-gray-600">{benefit.name}</div>
+                    <div className="flex-1 bg-gray-200 rounded-full h-4 mx-3 relative overflow-hidden">
+                      <div
+                        className={`${benefit.color} h-4 rounded-full transition-all duration-700`}
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                    <div className="w-20 text-sm font-medium text-gray-800 text-left">
+                      {formatCurrency(benefit.value)}
+                    </div>
                   </div>
-                  <div className="w-20 text-sm font-medium text-gray-800 text-left">
-                    {formatCurrency(benefit.value)}
-                  </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
 

@@ -38,7 +38,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href={`/favicon.svg?v=${LOGO_VERSION}`} type="image/svg+xml" />
         <link rel="alternate icon" href={`/favicon.ico?v=${LOGO_VERSION}`} />
-        <link rel="apple-touch-icon" href={`/favicon.svg?v=${LOGO_VERSION}`} />
+        <link rel="apple-touch-icon" href={`/apple-touch-icon.png?v=${LOGO_VERSION}`} />
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />

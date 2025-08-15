@@ -95,29 +95,30 @@ export default function HowItWorks({
       if (items.length === 0) return
 
       const currentIndex = items.findIndex((el) => el === document.activeElement)
-      if (currentIndex === -1) return
-
-      const goPrev = () => items[getNextIndex(currentIndex, items.length, -1)].focus()
-      const goNext = () => items[getNextIndex(currentIndex, items.length, +1)].focus()
+      const focusAt = (idx: number) => items[idx]?.focus()
+      const goPrev = () => focusAt(getNextIndex(currentIndex, items.length, -1))
+      const goNext = () => focusAt(getNextIndex(currentIndex, items.length, +1))
 
       switch (e.key) {
         case 'ArrowUp':
         case 'ArrowRight': // RTL-friendly
           e.preventDefault()
-          goPrev()
+          if (currentIndex === -1) focusAt(0)
+          else goPrev()
           break
         case 'ArrowDown':
         case 'ArrowLeft': // RTL-friendly
           e.preventDefault()
-          goNext()
+          if (currentIndex === -1) focusAt(0)
+          else goNext()
           break
         case 'Home':
           e.preventDefault()
-          items[0]?.focus()
+          focusAt(0)
           break
         case 'End':
           e.preventDefault()
-          items[items.length - 1]?.focus()
+          focusAt(items.length - 1)
           break
       }
     }
@@ -128,7 +129,7 @@ export default function HowItWorks({
         <button
           id={triggerId}
           aria-controls={panelId}
-          aria-expanded={open ? 'true' : 'false'}
+          aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
           onKeyDown={onTriggerKeyDown}
           className="flex w-full items-center justify-between gap-3 px-4 py-3 text-right text-sm font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
@@ -168,6 +169,7 @@ export default function HowItWorks({
                 {steps.map((s, i) => (
                   <li
                     key={i}
+                    role="listitem"
                     tabIndex={0}
                     data-roving-item
                     className="rounded-md border border-gray-200 bg-gray-50 p-3 leading-relaxed text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
@@ -195,6 +197,7 @@ export default function HowItWorks({
                   {tips.map((t, i) => (
                     <li
                       key={i}
+                      role="listitem"
                       tabIndex={0}
                       data-roving-item
                       className="rounded-md border border-gray-200 bg-white p-3 leading-relaxed text-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
@@ -217,7 +220,7 @@ export default function HowItWorks({
                   onKeyDown={makeRovingHandler(sourcesRef)}
                 >
                   {sources.map((s, i) => (
-                    <li key={i} className="leading-relaxed">
+                    <li key={i} role="listitem" className="leading-relaxed">
                       <a
                         href={s.url}
                         target="_blank"

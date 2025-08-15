@@ -11,8 +11,7 @@ interface RatesData {
 }
 
 const fmtPct = (n: number) => `${n.toFixed(2)}%`
-const fmtDate = (iso: string) =>
-  new Date(iso).toLocaleDateString('he-IL', { dateStyle: 'medium' })
+const fmtDate = (iso: string) => new Date(iso).toLocaleDateString('he-IL', { dateStyle: 'medium' })
 
 export default function RatesBoard() {
   const data = ratesData as RatesData
@@ -41,15 +40,21 @@ export default function RatesBoard() {
             <dl className="grid grid-cols-3 gap-2 text-sm">
               <div className="rounded bg-gray-50 p-2 text-center">
                 <dt className="text-gray-600">קצר</dt>
-                <dd className="font-semibold text-gray-900">{fmtPct(data.avgMortgage.linked.short)}</dd>
+                <dd className="font-semibold text-gray-900">
+                  {fmtPct(data.avgMortgage.linked.short)}
+                </dd>
               </div>
               <div className="rounded bg-gray-50 p-2 text-center">
                 <dt className="text-gray-600">בינוני</dt>
-                <dd className="font-semibold text-gray-900">{fmtPct(data.avgMortgage.linked.mid)}</dd>
+                <dd className="font-semibold text-gray-900">
+                  {fmtPct(data.avgMortgage.linked.mid)}
+                </dd>
               </div>
               <div className="rounded bg-gray-50 p-2 text-center">
                 <dt className="text-gray-600">ארוך</dt>
-                <dd className="font-semibold text-gray-900">{fmtPct(data.avgMortgage.linked.long)}</dd>
+                <dd className="font-semibold text-gray-900">
+                  {fmtPct(data.avgMortgage.linked.long)}
+                </dd>
               </div>
             </dl>
           </div>
@@ -59,15 +64,21 @@ export default function RatesBoard() {
             <dl className="grid grid-cols-3 gap-2 text-sm">
               <div className="rounded bg-gray-50 p-2 text-center">
                 <dt className="text-gray-600">קצר</dt>
-                <dd className="font-semibold text-gray-900">{fmtPct(data.avgMortgage.unlinked.short)}</dd>
+                <dd className="font-semibold text-gray-900">
+                  {fmtPct(data.avgMortgage.unlinked.short)}
+                </dd>
               </div>
               <div className="rounded bg-gray-50 p-2 text-center">
                 <dt className="text-gray-600">בינוני</dt>
-                <dd className="font-semibold text-gray-900">{fmtPct(data.avgMortgage.unlinked.mid)}</dd>
+                <dd className="font-semibold text-gray-900">
+                  {fmtPct(data.avgMortgage.unlinked.mid)}
+                </dd>
               </div>
               <div className="rounded bg-gray-50 p-2 text-center">
                 <dt className="text-gray-600">ארוך</dt>
-                <dd className="font-semibold text-gray-900">{fmtPct(data.avgMortgage.unlinked.long)}</dd>
+                <dd className="font-semibold text-gray-900">
+                  {fmtPct(data.avgMortgage.unlinked.long)}
+                </dd>
               </div>
             </dl>
           </div>
