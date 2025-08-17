@@ -137,6 +137,20 @@ export default function Home() {
               </div>
             </div>
           </Link>
+
+          {/* Community Q&A */}
+          <Link href="/community" className="group">
+            <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200 hover:border-cyan-300">
+              <div className="text-4xl mb-4">🤝</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">קהילת שאלות ותשובות</h3>
+              <p className="text-gray-600 text-sm">
+                שאלו שאלות פיננסיות וקבלו תשובות ממומחים וקהילת המשתמשים
+              </p>
+              <div className="mt-4 text-cyan-600 font-medium group-hover:text-cyan-700">
+                הצטרף לקהילה ←
+              </div>
+            </div>
+          </Link>
         </div>
 
         {/* Features Section */}

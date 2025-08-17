@@ -46,6 +46,12 @@ export default function Navigation() {
       >
         יעדי חיסכון
       </Link>
+      <Link
+        href="/community"
+        className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+      >
+        קהילה
+      </Link>
     </nav>
   )
 }
