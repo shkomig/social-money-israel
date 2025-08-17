@@ -7,10 +7,12 @@ import EarlyRepaymentEstimator from '@/components/calculators/EarlyRepaymentEsti
 export default function MortgageRefinancePage() {
   return (
     <Layout>
-      <div dir="rtl" className="max-w-screen-md mx-auto p-4">
+      <div dir="rtl" className="max-w-screen-md mx-auto p-4 space-y-8">
         <RatesBoard />
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">מחשבון מחזור משכנתא</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-l from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            מחשבון מחזור משכנתא
+          </h1>
           <p className="text-lg text-gray-600">
             בדקו אם כדאי לכם לבצע מחזור משכנתא וכמה תוכלו לחסוך
           </p>
@@ -51,24 +53,19 @@ export default function MortgageRefinancePage() {
               'בצעו שתי סימולציות: יציבות ריבית מול עליית ריבית/מדד.',
             ]}
             sources={[
-              {
-                label: 'בנק ישראל – מדריכי משכנתאות',
-                url: 'https://www.boi.org.il',
-              },
-              {
-                label: 'טאבו/מרשם מקרקעין – טפסים ורישומים',
-                url: 'https://www.gov.il',
-              },
+              { label: 'בנק ישראל – מדריכי משכנתאות', url: 'https://www.boi.org.il' },
+              { label: 'טאבו/מרשם מקרקעין – טפסים ורישומים', url: 'https://www.gov.il' },
             ]}
           />
         </div>
 
         <MortgageRefinanceCalculator />
 
+        {/* אומדן עמלת פירעון מוקדם */}
         <EarlyRepaymentEstimator />
 
         {/* Educational Content */}
-        <div className="mt-12 bg-blue-50 rounded-xl p-6">
+        <div className="mt-12 bg-blue-50 rounded-xl p-6 ring-1 ring-inset ring-blue-100">
           <h2 className="text-xl font-semibold text-blue-900 mb-4">
             💡 מתי כדאי לבצע מחזור משכנתא?
           </h2>
@@ -81,7 +78,7 @@ export default function MortgageRefinancePage() {
         </div>
 
         {/* Additional Tips */}
-        <div className="mt-8 bg-green-50 rounded-xl p-6">
+        <div className="mt-8 bg-green-50 rounded-xl p-6 ring-1 ring-inset ring-green-100">
           <h3 className="text-lg font-semibold text-green-900 mb-3">💰 טיפים לחיסכון נוסף:</h3>
           <div className="space-y-2 text-green-800">
             <p>• השוו הצעות ממספר בנקים</p>

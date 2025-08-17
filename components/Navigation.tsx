@@ -3,10 +3,7 @@ import Link from 'next/link'
 
 export default function Navigation() {
   return (
-    <nav
-      className="hidden md:flex items-center space-x-reverse space-x-8"
-      role="navigation"
-    >
+    <nav className="hidden md:flex items-center space-x-reverse space-x-8" role="navigation">
       <Link
         href="/"
         className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
@@ -42,6 +39,12 @@ export default function Navigation() {
         className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
       >
         משאבים
+      </Link>
+      <Link
+        href="/goals"
+        className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+      >
+        יעדי חיסכון
       </Link>
     </nav>
   )

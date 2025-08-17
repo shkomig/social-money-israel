@@ -27,6 +27,19 @@ export default function Home() {
 
         {/* Calculator Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {/* Benefits Eligibility */}
+          <Link href="/benefits" className="group">
+            <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200 hover:border-emerald-300">
+              <div className="text-4xl mb-4">🎯</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">בדיקת זכאות להטבות</h3>
+              <p className="text-gray-600 text-sm">
+                שאלון קצר לבדיקת זכאות להחזר מס, מענק עבודה והנחות בארנונה ועוד
+              </p>
+              <div className="mt-4 text-emerald-600 font-medium group-hover:text-emerald-700">
+                בדוק זכאות ←
+              </div>
+            </div>
+          </Link>
           {/* Tax Refund Calculator */}
           <Link href="/calculators/tax-refund" className="group">
             <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200 hover:border-blue-300">
@@ -107,6 +120,20 @@ export default function Home() {
               </p>
               <div className="mt-4 text-teal-600 font-medium group-hover:text-teal-700">
                 צפה במשאבים ←
+              </div>
+            </div>
+          </Link>
+
+          {/* Savings Goals */}
+          <Link href="/goals" className="group">
+            <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200 hover:border-emerald-300">
+              <div className="text-4xl mb-4">💰</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">יעדי חיסכון</h3>
+              <p className="text-gray-600 text-sm">
+                הגדירו מספר יעדים, נתחו הוצאות ב-CSV, וקבלו גרפים והמלצות להאצת החיסכון
+              </p>
+              <div className="mt-4 text-emerald-600 font-medium group-hover:text-emerald-700">
+                נהל יעדים ←
               </div>
             </div>
           </Link>

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { LOGO_VERSION } from '@/lib/constants'
 import './globals.css'
+import Providers from '@/components/Providers'
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -13,6 +14,14 @@ export const metadata: Metadata = {
   keywords: 'החזר מס, מענק עבודה, מחזור משכנתא, זכויות נכות, פנסיה, קופת גמל, מחשבונים פיננסיים',
   authors: [{ name: 'כסף חברתי' }],
   robots: 'index, follow',
+  manifest: '/manifest.json',
+  icons: {
+    icon: [
+      { url: `/favicon.svg?v=${LOGO_VERSION}`, type: 'image/svg+xml' },
+      { url: `/favicon.ico?v=${LOGO_VERSION}` },
+    ],
+    apple: `/apple-touch-icon.png?v=${LOGO_VERSION}`,
+  },
   openGraph: {
     title: 'כסף חברתי - מחשבונים פיננסיים וזכויות סוציאליות',
     description: 'מחשבונים מדויקים להחזר מס, מענק עבודה ומחזור משכנתאות בישראל',
@@ -36,10 +45,6 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl">
       <head>
-        <link rel="icon" href={`/favicon.svg?v=${LOGO_VERSION}`} type="image/svg+xml" />
-        <link rel="alternate icon" href={`/favicon.ico?v=${LOGO_VERSION}`} />
-        <link rel="apple-touch-icon" href={`/apple-touch-icon.png?v=${LOGO_VERSION}`} />
-        <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="כסף חברתי" />
@@ -51,7 +56,9 @@ export default function RootLayout({
         >
           דלג לתוכן הראשי
         </a>
-        <div id="main-content">{children}</div>
+        <div id="main-content">
+          <Providers>{children}</Providers>
+        </div>
       </body>
     </html>
   )
