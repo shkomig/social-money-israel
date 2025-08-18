@@ -12,6 +12,15 @@ export const generateMetadata = (): Metadata => ({
   alternates: {
     canonical: 'https://social-money-israel.netlify.app/calculators/mortgage-refinance',
   },
+  openGraph: {
+    title: 'מחזור משכנתה – מחשבון והסבר',
+    description: 'בדוק פוטנציאל חיסכון, עמלת פירעון מוקדם והערכות לפני ביצוע מחזור.',
+    url: 'https://social-money-israel.netlify.app/calculators/mortgage-refinance',
+    images: [{ url: 'https://social-money-israel.netlify.app/logo.png', alt: 'מחזור משכנתה' }],
+    locale: 'he-IL',
+    type: 'article',
+  },
+  twitter: { card: 'summary_large_image', title: 'מחזור משכנתה – כסף חברתי', description: 'בדוק פוטנציאל חיסכון ועמלות', images: ['https://social-money-israel.netlify.app/logo.png'] },
 })
 
 export default function MortgageRefinancePage() {

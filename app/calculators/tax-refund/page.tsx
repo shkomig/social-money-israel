@@ -8,6 +8,15 @@ export const generateMetadata = (): Metadata => ({
   title: 'החזר מס – מחשבון והסבר',
   description: 'מי זכאי, אילו מסמכים צריך, ודוגמה מספרית פשוטה.',
   alternates: { canonical: 'https://social-money-israel.netlify.app/calculators/tax-refund' },
+  openGraph: {
+    title: 'החזר מס – מחשבון והסבר',
+    description: 'מי זכאי להחזר מס ואיך להגיש בקשה בצורה פשוטה ומובנת.',
+    url: 'https://social-money-israel.netlify.app/calculators/tax-refund',
+    images: [{ url: 'https://social-money-israel.netlify.app/logo.png', alt: 'החזר מס' }],
+    locale: 'he-IL',
+    type: 'article',
+  },
+  twitter: { card: 'summary_large_image', title: 'החזר מס – כסף חברתי', description: 'מי זכאי להחזר מס ואיך להגיש', images: ['https://social-money-israel.netlify.app/logo.png'] },
 })
 
 export default function TaxRefundPage() {
@@ -53,7 +62,10 @@ export default function TaxRefundPage() {
         <nav aria-label="קישורים רלוונטיים" dir="rtl" className="mt-6 border-t pt-4">
           <ul className="space-y-2">
             <li>
-              <a href="/calculators/mortgage-refinance" className="text-sm opacity-80 hover:underline">
+              <a
+                href="/calculators/mortgage-refinance"
+                className="text-sm opacity-80 hover:underline"
+              >
                 מחשבון מחזור משכנתא
               </a>
             </li>

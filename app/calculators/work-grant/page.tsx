@@ -8,6 +8,15 @@ export const generateMetadata = (): Metadata => ({
   title: 'מענק עבודה – מחשבון זכאות',
   description: 'כלי מהיר לבדיקת זכאות למענק עבודה והשפעה על ההכנסה החודשית.',
   alternates: { canonical: 'https://social-money-israel.netlify.app/calculators/work-grant' },
+  openGraph: {
+    title: 'מענק עבודה – מחשבון זכאות',
+    description: 'בדקו אם אתם זכאים למענק עבודה וכיצד להגיש בקשה.',
+    url: 'https://social-money-israel.netlify.app/calculators/work-grant',
+    images: [{ url: 'https://social-money-israel.netlify.app/logo.png', alt: 'מענק עבודה' }],
+    locale: 'he-IL',
+    type: 'article',
+  },
+  twitter: { card: 'summary_large_image', title: 'מענק עבודה – כסף חברתי', description: 'בדקו זכאות למענק עבודה', images: ['https://social-money-israel.netlify.app/logo.png'] },
 })
 
 export default function WorkGrantPage() {
@@ -50,7 +59,10 @@ export default function WorkGrantPage() {
         <nav aria-label="קישורים רלוונטיים" dir="rtl" className="mt-6 border-t pt-4">
           <ul className="space-y-2">
             <li>
-              <a href="/calculators/mortgage-refinance" className="text-sm opacity-80 hover:underline">
+              <a
+                href="/calculators/mortgage-refinance"
+                className="text-sm opacity-80 hover:underline"
+              >
                 מחשבון מחזור משכנתא
               </a>
             </li>

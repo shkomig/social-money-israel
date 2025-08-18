@@ -5,6 +5,15 @@ export const generateMetadata = (): Metadata => ({
   title: 'משאבים והדרכה – כלים לקהילה',
   description: 'מאמרים, קישורים וכלים שיסייעו בקבלת החלטות כלכליות נכונות.',
   alternates: { canonical: 'https://social-money-israel.netlify.app/resources' },
+  openGraph: {
+    title: 'משאבים והדרכה – כסף חברתי',
+    description: 'קישורים למידע רשמי, מדריכים ומקורות אמינים בנושא זכויות כלכליות בישראל.',
+    url: 'https://social-money-israel.netlify.app/resources',
+    images: [{ url: 'https://social-money-israel.netlify.app/logo.png', alt: 'משאבים' }],
+    locale: 'he-IL',
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image', title: 'משאבים והדרכה – כסף חברתי', description: 'מקורות רשמיים ומדריכים', images: ['https://social-money-israel.netlify.app/logo.png'] },
 })
 
 export default function ResourcesPage() {

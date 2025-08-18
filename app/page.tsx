@@ -9,6 +9,26 @@ export const generateMetadata = (): Metadata => ({
   title: 'כסף חברתי – מחשבונים חכמים, אשף זכאות ומידע רשמי',
   description: 'חוסכים כסף בפשטות: מחשבונים חכמים, אשף זכאות אישי ומידע רשמי במקום אחד. בחינם.',
   alternates: { canonical: 'https://social-money-israel.netlify.app/' },
+  openGraph: {
+    title: 'כסף חברתי – מחשבונים חכמים, אשף זכאות ומידע רשמי',
+    description: 'חוסכים כסף בפשטות: מחשבונים חכמים, אשף זכאות אישי ומידע רשמי במקום אחד.',
+    url: 'https://social-money-israel.netlify.app/',
+    siteName: 'כסף חברתי',
+    images: [
+      {
+        url: 'https://social-money-israel.netlify.app/logo.png',
+        alt: 'כסף חברתי',
+      },
+    ],
+    locale: 'he-IL',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'כסף חברתי – מחשבונים חכמים',
+    description: 'מחשבונים חכמים, אשף זכאות ומידע רשמי בישראל.',
+    images: ['https://social-money-israel.netlify.app/logo.png'],
+  },
 })
 
 export default function Home() {
@@ -51,8 +71,7 @@ export default function Home() {
             '@context': 'https://schema.org',
             '@type': 'VideoObject',
             name: 'כסף חברתי – סרטון פתיחה (30 שניות)',
-            description:
-              'מחשבונים חכמים, אשף זכאות ומידע רשמי – מתחילים לחסוך עכשיו.',
+            description: 'מחשבונים חכמים, אשף זכאות ומידע רשמי – מתחילים לחסוך עכשיו.',
             uploadDate: new Date().toISOString(),
             duration: 'PT30S',
             contentUrl:

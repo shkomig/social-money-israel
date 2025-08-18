@@ -6,6 +6,21 @@ export const generateMetadata = (): Metadata => ({
   title: 'מחשבונים – כסף חברתי',
   description: 'אוסף מחשבונים מעשיים: מחזור משכנתה, החזר מס, מענק עבודה.',
   alternates: { canonical: 'https://social-money-israel.netlify.app/calculators' },
+  openGraph: {
+    title: 'מחשבונים – כסף חברתי',
+    description: 'אוסף מחשבונים מעשיים: מחזור משכנתה, החזר מס, מענק עבודה ועוד.',
+    url: 'https://social-money-israel.netlify.app/calculators',
+    siteName: 'כסף חברתי',
+    images: [{ url: 'https://social-money-israel.netlify.app/logo.png', alt: 'כסף חברתי' }],
+    locale: 'he-IL',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'מחשבונים – כסף חברתי',
+    description: 'אוסף מחשבונים מעשיים: מחזור משכנתה, החזר מס, מענק עבודה ועוד.',
+    images: ['https://social-money-israel.netlify.app/logo.png'],
+  },
 })
 
 export default function CalculatorsPage() {
