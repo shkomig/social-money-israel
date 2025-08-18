@@ -1,6 +1,13 @@
 import Layout from '@/components/Layout'
 import WorkGrantCalculator from '@/components/calculators/WorkGrantCalculator'
 import HowItWorks from '@/components/HowItWorks'
+import type { Metadata } from 'next'
+
+export const generateMetadata = (): Metadata => ({
+  title: 'מענק עבודה – מחשבון זכאות',
+  description: 'כלי מהיר לבדיקת זכאות למענק עבודה והשפעה על ההכנסה החודשית.',
+  alternates: { canonical: 'https://social-money-israel.netlify.app/calculators/work-grant' },
+})
 
 export default function WorkGrantPage() {
   return (

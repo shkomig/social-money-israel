@@ -2,6 +2,14 @@ import Link from 'next/link'
 import Layout from '@/components/Layout'
 import Logo from '@/components/Logo'
 import HeroVideo from '@/components/HeroVideo'
+import type { Metadata } from 'next'
+
+export const generateMetadata = (): Metadata => ({
+  title: 'כסף חברתי – מחשבונים חכמים, אשף זכאות ומידע רשמי',
+  description:
+    'חוסכים כסף בפשטות: מחשבונים חכמים, אשף זכאות אישי ומידע רשמי במקום אחד. בחינם.',
+  alternates: { canonical: 'https://social-money-israel.netlify.app/' },
+})
 
 export default function Home() {
   return (

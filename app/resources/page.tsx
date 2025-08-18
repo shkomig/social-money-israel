@@ -1,4 +1,11 @@
 import Layout from '@/components/Layout'
+import type { Metadata } from 'next'
+
+export const generateMetadata = (): Metadata => ({
+  title: 'משאבים והדרכה – כלים לקהילה',
+  description: 'מאמרים, קישורים וכלים שיסייעו בקבלת החלטות כלכליות נכונות.',
+  alternates: { canonical: 'https://social-money-israel.netlify.app/resources' },
+})
 
 export default function ResourcesPage() {
   return (

@@ -1,5 +1,12 @@
 import Link from 'next/link'
 import Layout from '@/components/Layout'
+import type { Metadata } from 'next'
+
+export const generateMetadata = (): Metadata => ({
+  title: 'מחשבונים – כסף חברתי',
+  description: 'אוסף מחשבונים מעשיים: מחזור משכנתה, החזר מס, מענק עבודה.',
+  alternates: { canonical: 'https://social-money-israel.netlify.app/calculators' },
+})
 
 export default function CalculatorsPage() {
   return (

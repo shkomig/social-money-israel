@@ -3,6 +3,14 @@ import MortgageRefinanceCalculator from '@/components/calculators/MortgageRefina
 import HowItWorks from '@/components/HowItWorks'
 import RatesBoard from '@/components/RatesBoard'
 import EarlyRepaymentEstimator from '@/components/calculators/EarlyRepaymentEstimator'
+import type { Metadata } from 'next'
+
+export const generateMetadata = (): Metadata => ({
+  title: 'מחזור משכנתה – מחשבון והסבר',
+  description:
+    'בדוק פוטנציאל חיסכון, הערכת עמלת פירעון מוקדם והסבר צעד-אחר-צעד.',
+  alternates: { canonical: 'https://social-money-israel.netlify.app/calculators/mortgage-refinance' },
+})
 
 export default function MortgageRefinancePage() {
   return (

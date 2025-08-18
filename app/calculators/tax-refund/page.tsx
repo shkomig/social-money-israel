@@ -1,6 +1,13 @@
 import Layout from '@/components/Layout'
 import TaxRefundCalculator from '@/components/calculators/TaxRefundCalculator'
 import HowItWorks from '@/components/HowItWorks'
+import type { Metadata } from 'next'
+
+export const generateMetadata = (): Metadata => ({
+  title: 'החזר מס – מחשבון והסבר',
+  description: 'מי זכאי, אילו מסמכים צריך, ודוגמה מספרית פשוטה.',
+  alternates: { canonical: 'https://social-money-israel.netlify.app/calculators/tax-refund' },
+})
 
 export default function TaxRefundPage() {
   return (
