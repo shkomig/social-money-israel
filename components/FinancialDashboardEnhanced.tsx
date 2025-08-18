@@ -314,11 +314,13 @@ export default function FinancialDashboard({ results, selectedIds = [], calculat
 
   // Effects
   useEffect(() => {
-    updateDashboard({
-      totalBenefit,
-      deadlineCount: upcomingDeadlines.length,
-      lastUpdated: new Date().toISOString()
-    })
+    if (typeof updateDashboard === 'function') {
+      updateDashboard({
+        totalBenefit,
+        deadlineCount: upcomingDeadlines.length,
+        lastUpdated: new Date().toISOString()
+      })
+    }
   }, [totalBenefit, upcomingDeadlines.length, updateDashboard])
 
   useEffect(() => {
@@ -515,7 +517,7 @@ export default function FinancialDashboard({ results, selectedIds = [], calculat
                         <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                           זכאי
                         </span>
-                        {result.requirements && (
+                        {Array.isArray(result.requirements) && (
                           <span className="text-xs">
                             {result.requirements.length} תנאים
                           </span>

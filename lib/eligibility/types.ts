@@ -21,6 +21,10 @@ export type BenefitResult = {
   summary: string
   link?: { label: string; url: string }
   guide?: { label: string; url: string }
+  // Optional list of requirements or conditions to be eligible for the benefit
+  requirements?: string[]
+  // Optional suggested next steps for the user
+  nextSteps?: string[]
 }
 
 export type BenefitRule = {

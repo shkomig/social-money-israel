@@ -179,10 +179,12 @@ export default function EarlyRepaymentEstimator() {
    */
   useEffect(() => {
     if (calculationResults && calculationResults.monthlySaving > 0) {
-      updateCalculators({
-        earlyRepaymentMonthlySaving: calculationResults.monthlySaving,
-        earlyRepaymentEstimatedFee: calculationResults.estimatedFee
-      })
+      if (typeof updateCalculators === 'function') {
+        updateCalculators({
+          earlyRepaymentMonthlySaving: calculationResults.monthlySaving,
+          earlyRepaymentEstimatedFee: calculationResults.estimatedFee
+        })
+      }
     }
   }, [calculationResults, updateCalculators])
 
