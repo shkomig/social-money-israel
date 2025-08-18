@@ -6,7 +6,8 @@
   package = "netlify-plugin-bundle-env"
   # Specify the source directory explicitly so the plugin can find the env bundle
   [plugins.inputs]
-    source = "kesef-hevrati"
+  # 'source' is not a valid input for this plugin; use 'directories' instead
+  directories = ["kesef-hevrati"]
 
 [[plugins]]
   package = "netlify-plugin-use-env-in-runtime"
