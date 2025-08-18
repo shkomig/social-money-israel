@@ -30,7 +30,7 @@ export default function Home() {
 
         {/* Intro Video */}
         <div className="mb-12">
-          <HeroVideo src="/video/social-money_intro_30s_1080x1920.mp4.mp4" />
+          <HeroVideo src="/video/social-money_intro_30s_1080x1920.mp4" />
         </div>
 
         {/* JSON-LD: Organization */}

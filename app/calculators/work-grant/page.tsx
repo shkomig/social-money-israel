@@ -46,6 +46,26 @@ export default function WorkGrantPage() {
         </div>
 
         <WorkGrantCalculator />
+        {/* Related links */}
+        <nav aria-label="קישורים רלוונטיים" dir="rtl" className="mt-6 border-t pt-4">
+          <ul className="space-y-2">
+            <li>
+              <a href="/calculators/mortgage-refinance" className="text-sm opacity-80 hover:underline">
+                מחשבון מחזור משכנתא
+              </a>
+            </li>
+            <li>
+              <a href="/calculators/tax-refund" className="text-sm opacity-80 hover:underline">
+                מחשבון החזר מס
+              </a>
+            </li>
+            <li>
+              <a href="/resources" className="text-sm opacity-80 hover:underline">
+                משאבים ומידע רשמי
+              </a>
+            </li>
+          </ul>
+        </nav>
         {/* JSON-LD: FAQ for Work Grant */}
         <Script id="faq-workgrant-jsonld" type="application/ld+json">
           {JSON.stringify({

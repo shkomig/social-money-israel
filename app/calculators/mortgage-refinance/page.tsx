@@ -98,6 +98,27 @@ export default function MortgageRefinancePage() {
           </div>
         </div>
 
+        {/* Related links */}
+        <nav aria-label="קישורים רלוונטיים" dir="rtl" className="mt-6 border-t pt-4">
+          <ul className="space-y-2">
+            <li>
+              <a href="/calculators/tax-refund" className="text-sm opacity-80 hover:underline">
+                מחשבון החזר מס
+              </a>
+            </li>
+            <li>
+              <a href="/calculators/work-grant" className="text-sm opacity-80 hover:underline">
+                מחשבון מענק עבודה
+              </a>
+            </li>
+            <li>
+              <a href="/resources" className="text-sm opacity-80 hover:underline">
+                משאבים ומידע רשמי
+              </a>
+            </li>
+          </ul>
+        </nav>
+
         {/* JSON-LD: FAQ for Mortgage Refinance */}
         <Script id="faq-mortgage-jsonld" type="application/ld+json">
           {JSON.stringify({
