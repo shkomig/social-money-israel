@@ -2,6 +2,7 @@ import Layout from '@/components/Layout'
 import TaxRefundCalculator from '@/components/calculators/TaxRefundCalculator'
 import HowItWorks from '@/components/HowItWorks'
 import type { Metadata } from 'next'
+import Script from 'next/script'
 
 export const generateMetadata = (): Metadata => ({
   title: 'החזר מס – מחשבון והסבר',
@@ -14,12 +15,9 @@ export default function TaxRefundPage() {
     <Layout>
       <div dir="rtl" className="max-w-screen-md mx-auto p-4">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            מחשבון החזר מס
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">מחשבון החזר מס</h1>
           <p className="text-lg text-gray-600">
-            חישוב מדויק של החזר המס המגיע לכם על פי חוקי המס הישראליים לשנת
-            2024-2025
+            חישוב מדויק של החזר המס המגיע לכם על פי חוקי המס הישראליים לשנת 2024-2025
           </p>
         </div>
 
@@ -51,6 +49,31 @@ export default function TaxRefundPage() {
         </div>
 
         <TaxRefundCalculator />
+        {/* JSON-LD: FAQ for Tax Refund */}
+        <Script id="faq-taxrefund-jsonld" type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'מי זכאי להחזר מס?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'שכירים ועצמאים במקרים שונים (שינויים בתעסוקה, נקודות זיכוי, תרומות ועוד).',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'איך מגישים?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'ממלאים טופס מקוון ומצרפים מסמכים רלוונטיים; יש קישור בעמוד.',
+                },
+              },
+            ],
+          })}
+        </Script>
       </div>
     </Layout>
   )

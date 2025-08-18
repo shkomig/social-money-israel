@@ -2,12 +2,12 @@ import Link from 'next/link'
 import Layout from '@/components/Layout'
 import Logo from '@/components/Logo'
 import HeroVideo from '@/components/HeroVideo'
+import Script from 'next/script'
 import type { Metadata } from 'next'
 
 export const generateMetadata = (): Metadata => ({
   title: 'כסף חברתי – מחשבונים חכמים, אשף זכאות ומידע רשמי',
-  description:
-    'חוסכים כסף בפשטות: מחשבונים חכמים, אשף זכאות אישי ומידע רשמי במקום אחד. בחינם.',
+  description: 'חוסכים כסף בפשטות: מחשבונים חכמים, אשף זכאות אישי ומידע רשמי במקום אחד. בחינם.',
   alternates: { canonical: 'https://social-money-israel.netlify.app/' },
 })
 
@@ -32,6 +32,33 @@ export default function Home() {
         <div className="mb-12">
           <HeroVideo src="/video/social-money_intro_30s_1080x1920.mp4.mp4" />
         </div>
+
+        {/* JSON-LD: Organization */}
+        <Script id="organization-jsonld" type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'כסף חברתי',
+            url: 'https://social-money-israel.netlify.app/',
+            logo: 'https://social-money-israel.netlify.app/logo.png',
+            sameAs: [],
+          })}
+        </Script>
+
+        {/* JSON-LD: VideoObject (hero) */}
+        <Script id="video-jsonld" type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'VideoObject',
+            name: 'כסף חברתי – סרטון פתיחה (30 שניות)',
+            description:
+              'מחשבונים חכמים, אשף זכאות ומידע רשמי – מתחילים לחסוך עכשיו.',
+            uploadDate: new Date().toISOString(),
+            duration: 'PT30S',
+            contentUrl:
+              'https://social-money-israel.netlify.app/video/social-money_intro_30s_1080x1920.mp4',
+          })}
+        </Script>
 
         {/* Calculator Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">

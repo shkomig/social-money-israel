@@ -4,12 +4,14 @@ import HowItWorks from '@/components/HowItWorks'
 import RatesBoard from '@/components/RatesBoard'
 import EarlyRepaymentEstimator from '@/components/calculators/EarlyRepaymentEstimator'
 import type { Metadata } from 'next'
+import Script from 'next/script'
 
 export const generateMetadata = (): Metadata => ({
   title: 'מחזור משכנתה – מחשבון והסבר',
-  description:
-    'בדוק פוטנציאל חיסכון, הערכת עמלת פירעון מוקדם והסבר צעד-אחר-צעד.',
-  alternates: { canonical: 'https://social-money-israel.netlify.app/calculators/mortgage-refinance' },
+  description: 'בדוק פוטנציאל חיסכון, הערכת עמלת פירעון מוקדם והסבר צעד-אחר-צעד.',
+  alternates: {
+    canonical: 'https://social-money-israel.netlify.app/calculators/mortgage-refinance',
+  },
 })
 
 export default function MortgageRefinancePage() {
@@ -95,6 +97,32 @@ export default function MortgageRefinancePage() {
             <p>• התייעצו עם יועץ משכנתאות לפני החלטה</p>
           </div>
         </div>
+
+        {/* JSON-LD: FAQ for Mortgage Refinance */}
+        <Script id="faq-mortgage-jsonld" type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'מה זה מחזור משכנתה?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'החלפת ההלוואה הקיימת בתנאים טובים יותר לצמצום ריבית ותשלום חודשי.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'האם קיימת עמלת פירעון מוקדם?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'ייתכן, בהתאם למסלול, לריבית ולזמן שנותר; אנו מציגים הערכה במחשבון.',
+                },
+              },
+            ],
+          })}
+        </Script>
       </div>
     </Layout>
   )

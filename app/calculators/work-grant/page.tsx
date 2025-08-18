@@ -2,6 +2,7 @@ import Layout from '@/components/Layout'
 import WorkGrantCalculator from '@/components/calculators/WorkGrantCalculator'
 import HowItWorks from '@/components/HowItWorks'
 import type { Metadata } from 'next'
+import Script from 'next/script'
 
 export const generateMetadata = (): Metadata => ({
   title: 'מענק עבודה – מחשבון זכאות',
@@ -14,12 +15,9 @@ export default function WorkGrantPage() {
     <Layout>
       <div dir="rtl" className="max-w-screen-md mx-auto p-4">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            מחשבון מענק עבודה
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">מחשבון מענק עבודה</h1>
           <p className="text-lg text-gray-600">
-            בדיקת זכאות למענק עבודה (מס הכנסה שלילי) למשפחות עובדות בעלות הכנסה
-            נמוכה
+            בדיקת זכאות למענק עבודה (מס הכנסה שלילי) למשפחות עובדות בעלות הכנסה נמוכה
           </p>
         </div>
 
@@ -43,13 +41,36 @@ export default function WorkGrantPage() {
               'שמרו תלושי שכר וטפסי 106',
               'ודאו פרטי חשבון בנק נכונים',
             ]}
-            sources={[
-              { label: 'רשות המסים – מענק עבודה', url: 'https://tax.gov.il' },
-            ]}
+            sources={[{ label: 'רשות המסים – מענק עבודה', url: 'https://tax.gov.il' }]}
           />
         </div>
 
         <WorkGrantCalculator />
+        {/* JSON-LD: FAQ for Work Grant */}
+        <Script id="faq-workgrant-jsonld" type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'מי זכאי למענק עבודה?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'מי שעומד בתנאי ההכנסה והקריטריונים שנקבעו, לפי סטטוס משפחתי.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'איך בודקים ומגישים?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'מבצעים בדיקה מהירה באתר וקושרים לשירות ההגשה הרשמי.',
+                },
+              },
+            ],
+          })}
+        </Script>
       </div>
     </Layout>
   )

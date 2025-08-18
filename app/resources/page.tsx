@@ -12,9 +12,7 @@ export default function ResourcesPage() {
     <Layout>
       <div className="max-w-4xl mx-auto" dir="rtl">
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            משאבים ומידע רשמי
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">משאבים ומידע רשמי</h1>
           <p className="text-lg text-gray-600">
             קישורים למידע רשמי של רשויות המס והביטוח הלאומי בישראל
           </p>
@@ -155,13 +153,10 @@ export default function ResourcesPage() {
           <div className="flex items-start">
             <span className="text-2xl ml-3">⚠️</span>
             <div>
-              <h3 className="font-semibold text-yellow-800 mb-2">
-                הסתמכות על מידע רשמי
-              </h3>
+              <h3 className="font-semibold text-yellow-800 mb-2">הסתמכות על מידע רשמי</h3>
               <p className="text-yellow-700 text-sm">
-                המחשבונים באתר זה מיועדים לקבלת אומדן ראשוני בלבד. למידע מדויק
-                ועדכני, יש להסתמך על המידע הרשמי באתרי הממשלה וליצור קשר עם
-                הרשויות הרלוונטיות.
+                המחשבונים באתר זה מיועדים לקבלת אומדן ראשוני בלבד. למידע מדויק ועדכני, יש להסתמך על
+                המידע הרשמי באתרי הממשלה וליצור קשר עם הרשויות הרלוונטיות.
               </p>
             </div>
           </div>
