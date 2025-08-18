@@ -20,7 +20,12 @@ export const generateMetadata = (): Metadata => ({
     locale: 'he-IL',
     type: 'article',
   },
-  twitter: { card: 'summary_large_image', title: 'מחזור משכנתה – כסף חברתי', description: 'בדוק פוטנציאל חיסכון ועמלות', images: ['https://social-money-israel.netlify.app/logo.png'] },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'מחזור משכנתה – כסף חברתי',
+    description: 'בדוק פוטנציאל חיסכון ועמלות',
+    images: ['https://social-money-israel.netlify.app/logo.png'],
+  },
 })
 
 export default function MortgageRefinancePage() {

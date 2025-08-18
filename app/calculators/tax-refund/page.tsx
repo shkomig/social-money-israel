@@ -16,7 +16,12 @@ export const generateMetadata = (): Metadata => ({
     locale: 'he-IL',
     type: 'article',
   },
-  twitter: { card: 'summary_large_image', title: 'החזר מס – כסף חברתי', description: 'מי זכאי להחזר מס ואיך להגיש', images: ['https://social-money-israel.netlify.app/logo.png'] },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'החזר מס – כסף חברתי',
+    description: 'מי זכאי להחזר מס ואיך להגיש',
+    images: ['https://social-money-israel.netlify.app/logo.png'],
+  },
 })
 
 export default function TaxRefundPage() {

@@ -13,7 +13,12 @@ export const generateMetadata = (): Metadata => ({
     locale: 'he-IL',
     type: 'website',
   },
-  twitter: { card: 'summary_large_image', title: 'משאבים והדרכה – כסף חברתי', description: 'מקורות רשמיים ומדריכים', images: ['https://social-money-israel.netlify.app/logo.png'] },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'משאבים והדרכה – כסף חברתי',
+    description: 'מקורות רשמיים ומדריכים',
+    images: ['https://social-money-israel.netlify.app/logo.png'],
+  },
 })
 
 export default function ResourcesPage() {

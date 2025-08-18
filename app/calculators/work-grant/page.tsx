@@ -16,7 +16,12 @@ export const generateMetadata = (): Metadata => ({
     locale: 'he-IL',
     type: 'article',
   },
-  twitter: { card: 'summary_large_image', title: 'מענק עבודה – כסף חברתי', description: 'בדקו זכאות למענק עבודה', images: ['https://social-money-israel.netlify.app/logo.png'] },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'מענק עבודה – כסף חברתי',
+    description: 'בדקו זכאות למענק עבודה',
+    images: ['https://social-money-israel.netlify.app/logo.png'],
+  },
 })
 
 export default function WorkGrantPage() {

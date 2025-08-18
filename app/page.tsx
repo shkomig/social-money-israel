@@ -51,8 +51,7 @@ export default function Home() {
             '@context': 'https://schema.org',
             '@type': 'VideoObject',
             name: 'כסף חברתי – סרטון פתיחה (30 שניות)',
-            description:
-              'מחשבונים חכמים, אשף זכאות ומידע רשמי – מתחילים לחסוך עכשיו.',
+            description: 'מחשבונים חכמים, אשף זכאות ומידע רשמי – מתחילים לחסוך עכשיו.',
             uploadDate: new Date().toISOString(),
             duration: 'PT30S',
             contentUrl:
