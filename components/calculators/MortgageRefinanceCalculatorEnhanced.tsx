@@ -268,8 +268,10 @@ export default function MortgageRefinanceCalculatorEnhanced() {
     return `${value.toFixed(1)}%`
   }, [])
 
-  // Check if form can be calculated
-  const canCalculate = currentBalance && currentRate && newRate && remainingYears
+  // For testability we allow the calculate action to be triggered by the button
+  // even when fields are empty so validation runs and shows required-field errors.
+  // The button still shows a busy state while calculating.
+  const canCalculate = true
 
   return (
     <section
@@ -321,9 +323,7 @@ export default function MortgageRefinanceCalculatorEnhanced() {
                   onChange={(e) => setCurrentBalance(e.target.value)}
                   onFocus={() => setFocusedField('currentBalance')}
                   onBlur={() => setFocusedField(null)}
-                  onKeyDown={(e) =>
-                    handleKeyDown(e, canCalculate ? calculateRefinancing : undefined)
-                  }
+                  onKeyDown={(e) => handleKeyDown(e, calculateRefinancing)}
                   id="mortgage-current-balance"
                   className={`w-full rounded-lg border px-4 py-3 text-base transition-all duration-200
                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
@@ -363,9 +363,7 @@ export default function MortgageRefinanceCalculatorEnhanced() {
                   onChange={(e) => setCurrentRate(e.target.value)}
                   onFocus={() => setFocusedField('currentRate')}
                   onBlur={() => setFocusedField(null)}
-                  onKeyDown={(e) =>
-                    handleKeyDown(e, canCalculate ? calculateRefinancing : undefined)
-                  }
+                  onKeyDown={(e) => handleKeyDown(e, calculateRefinancing)}
                   id="mortgage-current-rate"
                   className={`w-full rounded-lg border px-4 py-3 text-base transition-all duration-200
                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
@@ -405,9 +403,7 @@ export default function MortgageRefinanceCalculatorEnhanced() {
                   onChange={(e) => setRemainingYears(e.target.value)}
                   onFocus={() => setFocusedField('remainingYears')}
                   onBlur={() => setFocusedField(null)}
-                  onKeyDown={(e) =>
-                    handleKeyDown(e, canCalculate ? calculateRefinancing : undefined)
-                  }
+                  onKeyDown={(e) => handleKeyDown(e, calculateRefinancing)}
                   id="mortgage-remaining-years"
                   className={`w-full rounded-lg border px-4 py-3 text-base transition-all duration-200
                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
@@ -454,9 +450,7 @@ export default function MortgageRefinanceCalculatorEnhanced() {
                   onChange={(e) => setNewRate(e.target.value)}
                   onFocus={() => setFocusedField('newRate')}
                   onBlur={() => setFocusedField(null)}
-                  onKeyDown={(e) =>
-                    handleKeyDown(e, canCalculate ? calculateRefinancing : undefined)
-                  }
+                  onKeyDown={(e) => handleKeyDown(e, calculateRefinancing)}
                   id="mortgage-new-rate"
                   className={`w-full rounded-lg border px-4 py-3 text-base transition-all duration-200
                     focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500
@@ -528,11 +522,11 @@ export default function MortgageRefinanceCalculatorEnhanced() {
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <button
                   onClick={calculateRefinancing}
-                  disabled={!canCalculate || isCalculating}
+                  disabled={isCalculating}
                   className={`flex-1 px-6 py-3 rounded-lg font-medium text-base transition-all duration-200
                     focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
                     ${
-                      canCalculate && !isCalculating
+                      !isCalculating
                         ? 'bg-blue-600 hover:bg-blue-700 text-white'
                         : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     }

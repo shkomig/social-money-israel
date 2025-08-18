@@ -12,7 +12,7 @@ export type FinanceContextValue = {
   setCalculators: (next: Partial<CalculatorsState>) => void
   // Accept either a partial update or an updater function
   updateCalculators?: (
-    arg: Partial<CalculatorsState> | ((prev: CalculatorsState) => CalculatorsState)
+    arg: Partial<CalculatorsState> | ((prev: CalculatorsState) => CalculatorsState),
   ) => void
   // Optional dashboard updater for consumers that need to trigger dashboard-level updates
   updateDashboard?: (payload: Record<string, unknown> | null) => void
