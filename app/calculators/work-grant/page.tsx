@@ -60,6 +60,23 @@ export default function WorkGrantPage() {
         </div>
 
         <WorkGrantCalculator />
+
+        <section
+          id="guide"
+          dir="rtl"
+          className="max-w-screen-md mx-auto mt-8 space-y-6 text-slate-700"
+        >
+          <h2 className="text-xl font-semibold">מדריך מהיר – מענק עבודה</h2>
+          <p>
+            מענק עבודה (מס הכנסה שלילי) ניתן על סמך הכנסה משפחתית ותנאיי זכאות. המחשבון נותן אומדן
+            מהיר; לבדיקה סופית יש להיכנס לאתר הרשמי ולהתעדכן בקריטריונים.
+          </p>
+          <p>
+            וודאו עדכון מצב משפחתי, תלושי שכר וטפסים לפני הגשה. במידה ויש חוסר ודאות, פנו לייעוץ
+            מקצועי.
+          </p>
+        </section>
+
         {/* Related links */}
         <nav aria-label="קישורים רלוונטיים" dir="rtl" className="mt-6 border-t pt-4">
           <ul className="space-y-2">

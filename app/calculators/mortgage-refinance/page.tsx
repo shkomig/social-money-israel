@@ -85,6 +85,23 @@ export default function MortgageRefinancePage() {
 
         <MortgageRefinanceCalculator />
 
+        {/* הוספת מדריך קצר - לפי בקשה */}
+        <section
+          id="guide"
+          dir="rtl"
+          className="max-w-screen-md mx-auto mt-8 space-y-6 text-slate-700"
+        >
+          <h2 className="text-xl font-semibold">מדריך מהיר למחזור משכנתא</h2>
+          <p>
+            מחזור משכנתא הוא תהליך שבו מחליפים הלוואה קיימת בתנאים טובים יותר. לפני שמחליטים: אספו
+            מידע על יתרות, ריביות, עמלות פירעון ועשו השוואה בין הצעות בנקאיות.
+          </p>
+          <p>
+            חשוב לכלול בעמלות גם עלויות שנלוויות כמו שמאי, רישום ועמלות פתיחת תיק. חשבו חיסכון נטו
+            אחרי כל העלויות לפני שאתם חותמים.
+          </p>
+        </section>
+
         {/* אומדן עמלת פירעון מוקדם */}
         <EarlyRepaymentEstimator />
 

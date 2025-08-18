@@ -63,6 +63,22 @@ export default function TaxRefundPage() {
         </div>
 
         <TaxRefundCalculator />
+
+        <section
+          id="guide"
+          dir="rtl"
+          className="max-w-screen-md mx-auto mt-8 space-y-6 text-slate-700"
+        >
+          <h2 className="text-xl font-semibold">מדריך מהיר – החזר מס</h2>
+          <p>
+            לחישוב החזר מס יש לאסוף טפסי 106, אישורי תרומות והוצאות רלוונטיות. המחשבון נותן הערכה
+            ראשונית בלבד; למסמכים ולדרישות הרשמיות של רשות המסים יש לפנות למקור הרשמי.
+          </p>
+          <p>
+            שמרו קבלות ומסמכים ותבדקו אם אתם זכאים להגיש בקשה אחורנית (עד 6 שנים) במקרים מסוימים.
+          </p>
+        </section>
+
         {/* Related links */}
         <nav aria-label="קישורים רלוונטיים" dir="rtl" className="mt-6 border-t pt-4">
           <ul className="space-y-2">
