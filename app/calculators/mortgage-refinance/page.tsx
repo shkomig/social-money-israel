@@ -4,7 +4,6 @@ import HowItWorks from '@/components/HowItWorks'
 import RatesBoard from '@/components/RatesBoard'
 import EarlyRepaymentEstimator from '@/components/calculators/EarlyRepaymentEstimator'
 import type { Metadata } from 'next'
-import Script from 'next/script'
 
 export const generateMetadata = (): Metadata => ({
   title: 'מחזור משכנתה – מחשבון והסבר',
@@ -150,31 +149,34 @@ export default function MortgageRefinancePage() {
           </ul>
         </nav>
 
-        {/* JSON-LD: FAQ for Mortgage Refinance */}
-        <Script id="faq-mortgage-jsonld" type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: 'מה זה מחזור משכנתה?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'החלפת ההלוואה הקיימת בתנאים טובים יותר לצמצום ריבית ותשלום חודשי.',
+        {/* JSON-LD: FAQ for Mortgage Refinance (server-rendered) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'מה זה מחזור משכנתה?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'החלפת ההלוואה הקיימת בתנאים טובים יותר לצמצום ריבית ותשלום חודשי.',
+                  },
                 },
-              },
-              {
-                '@type': 'Question',
-                name: 'האם קיימת עמלת פירעון מוקדם?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'ייתכן, בהתאם למסלול, לריבית ולזמן שנותר; אנו מציגים הערכה במחשבון.',
+                {
+                  '@type': 'Question',
+                  name: 'האם קיימת עמלת פירעון מוקדם?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'ייתכן, בהתאם למסלול, לריבית ולזמן שנותר; אנו מציגים הערכה במחשבון.',
+                  },
                 },
-              },
-            ],
-          })}
-        </Script>
+              ],
+            }),
+          }}
+        ></script>
       </div>
     </Layout>
   )

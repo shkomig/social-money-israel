@@ -2,7 +2,6 @@ import Layout from '@/components/Layout'
 import TaxRefundCalculator from '@/components/calculators/TaxRefundCalculator'
 import HowItWorks from '@/components/HowItWorks'
 import type { Metadata } from 'next'
-import Script from 'next/script'
 
 export const generateMetadata = (): Metadata => ({
   title: 'החזר מס – מחשבון והסבר',
@@ -102,31 +101,34 @@ export default function TaxRefundPage() {
             </li>
           </ul>
         </nav>
-        {/* JSON-LD: FAQ for Tax Refund */}
-        <Script id="faq-taxrefund-jsonld" type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: 'מי זכאי להחזר מס?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'שכירים ועצמאים במקרים שונים (שינויים בתעסוקה, נקודות זיכוי, תרומות ועוד).',
+        {/* JSON-LD: FAQ for Tax Refund (server-rendered) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'מי זכאי להחזר מס?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'שכירים ועצמאים במקרים שונים (שינויים בתעסוקה, נקודות זיכוי, תרומות ועוד).',
+                  },
                 },
-              },
-              {
-                '@type': 'Question',
-                name: 'איך מגישים?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'ממלאים טופס מקוון ומצרפים מסמכים רלוונטיים; יש קישור בעמוד.',
+                {
+                  '@type': 'Question',
+                  name: 'איך מגישים?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'ממלאים טופס מקוון ומצרפים מסמכים רלוונטיים; יש קישור בעמוד.',
+                  },
                 },
-              },
-            ],
-          })}
-        </Script>
+              ],
+            }),
+          }}
+        ></script>
       </div>
     </Layout>
   )

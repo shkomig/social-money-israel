@@ -2,7 +2,6 @@ import Layout from '@/components/Layout'
 import WorkGrantCalculator from '@/components/calculators/WorkGrantCalculator'
 import HowItWorks from '@/components/HowItWorks'
 import type { Metadata } from 'next'
-import Script from 'next/script'
 
 export const generateMetadata = (): Metadata => ({
   title: 'מענק עבודה – מחשבון זכאות',
@@ -100,31 +99,34 @@ export default function WorkGrantPage() {
             </li>
           </ul>
         </nav>
-        {/* JSON-LD: FAQ for Work Grant */}
-        <Script id="faq-workgrant-jsonld" type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: 'מי זכאי למענק עבודה?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'מי שעומד בתנאי ההכנסה והקריטריונים שנקבעו, לפי סטטוס משפחתי.',
+        {/* JSON-LD: FAQ for Work Grant (server-rendered) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'מי זכאי למענק עבודה?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'מי שעומד בתנאי ההכנסה והקריטריונים שנקבעו, לפי סטטוס משפחתי.',
+                  },
                 },
-              },
-              {
-                '@type': 'Question',
-                name: 'איך בודקים ומגישים?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'מבצעים בדיקה מהירה באתר וקושרים לשירות ההגשה הרשמי.',
+                {
+                  '@type': 'Question',
+                  name: 'איך בודקים ומגישים?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'מבצעים בדיקה מהירה באתר וקושרים לשירות ההגשה הרשמי.',
+                  },
                 },
-              },
-            ],
-          })}
-        </Script>
+              ],
+            }),
+          }}
+        ></script>
       </div>
     </Layout>
   )
