@@ -54,6 +54,35 @@ export default function RootLayout({
           as="image"
           type="image/avif"
         />
+        <script type="application/ld+json">
+          {JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'כסף חברתי',
+              url: 'https://social-money-israel.netlify.app',
+              contactPoint: [
+                {
+                  '@type': 'ContactPoint',
+                  email: 'socialmoneyisrael@gmail.com',
+                  contactType: 'customer support',
+                  inLanguage: 'he',
+                },
+              ],
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'כסף חברתי',
+              url: 'https://social-money-israel.netlify.app',
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: 'https://social-money-israel.netlify.app/search?q={search_term_string}',
+                'query-input': 'required name=search_term_string',
+              },
+            },
+          ])}
+        </script>
       </head>
       <body className="font-sans antialiased bg-gray-50">
         <a

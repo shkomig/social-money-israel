@@ -11,17 +11,14 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Logo />
             <p className="mt-4 text-gray-600 text-sm leading-relaxed">
-              כסף חברתי - פלטפורמה לחישובים פיננסיים וזכויות סוציאליות בישראל.
-              אנו מספקים כלים מדויקים לחישוב החזרי מס, מענקי עבודה, ומחזור
-              משכנתאות.
+              כסף חברתי - פלטפורמה לחישובים פיננסיים וזכויות סוציאליות בישראל. אנו מספקים כלים
+              מדויקים לחישוב החזרי מס, מענקי עבודה, ומחזור משכנתאות.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">
-              קישורים מהירים
-            </h3>
+            <h3 className="text-sm font-semibold text-gray-900 mb-4">קישורים מהירים</h3>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -60,9 +57,7 @@ export default function Footer() {
 
           {/* Government Resources */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">
-              משאבים ממשלתיים
-            </h3>
+            <h3 className="text-sm font-semibold text-gray-900 mb-4">משאבים ממשלתיים</h3>
             <ul className="space-y-2">
               <li>
                 <a
@@ -100,9 +95,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm">
-            © 2024 כסף חברתי. כל הזכויות שמורות.
-          </p>
+          <p className="text-gray-500 text-sm">© 2024 כסף חברתי. כל הזכויות שמורות.</p>
           <div className="flex space-x-reverse space-x-6 mt-4 md:mt-0">
             <Link
               href="/privacy"
@@ -116,6 +109,12 @@ export default function Footer() {
             >
               תנאי שימוש
             </Link>
+            <a
+              href="mailto:socialmoneyisrael@gmail.com"
+              className="text-gray-500 hover:text-blue-600 text-sm transition-colors"
+            >
+              יצירת קשר
+            </a>
           </div>
         </div>
       </div>
