@@ -178,8 +178,13 @@ export default function MortgageRefinanceCalculatorEnhanced() {
     setIsCalculating(true)
 
     try {
-      // Simulate API call delay for better UX
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+  // Simulate API call delay for better UX. Skip or shorten the delay when running tests to avoid flakiness.
+  // Avoid explicit `any` to satisfy TypeScript/ESLint rules in client components.
+  const isJest =
+    typeof process !== 'undefined' &&
+    !!((process as unknown as { env?: Record<string, string> }).env?.JEST_WORKER_ID)
+  const delayMs = isJest ? 0 : 400
+  await new Promise((resolve) => setTimeout(resolve, delayMs))
 
       // Parse values
       const balance = parseFloat(currentBalance)
