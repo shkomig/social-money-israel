@@ -25,8 +25,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "stylelint": "stylelint \"**/*.{css,scss}\"",
     "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix",
-    "generate:images": "node ./scripts/generate-logos.js"
-  ,"convert:video": "node ./scripts/convert-video.js"
+    "generate:images": "node ./scripts/generate-logos.js",
+    "convert:video": "node ./scripts/convert-video.js"
   },
   "dependencies": {
     "chart.js": "^4.5.0",
@@ -60,8 +60,8 @@
     "stylelint-config-standard": "^36.0.0",
     "tailwindcss": "^4",
     "typescript": "^5",
-  "typescript-eslint": "^8.13.0",
-  "ffmpeg-static": "^5.1.0",
-  "fluent-ffmpeg": "^2.1.2"
+    "typescript-eslint": "^8.13.0",
+    "ffmpeg-static": "^5.1.0",
+    "fluent-ffmpeg": "^2.1.2"
   }
 }

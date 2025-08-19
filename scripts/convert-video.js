@@ -16,14 +16,7 @@ if (!fs.existsSync(input)) {
 console.log('Converting', input, '->', output)
 
 ffmpeg(input)
-  .outputOptions([
-    '-c:v libvpx-vp9',
-    '-b:v 0',
-    '-crf 30',
-    '-c:a libopus',
-    '-b:a 64k',
-    '-threads 2',
-  ])
+  .outputOptions(['-c:v libvpx-vp9', '-b:v 0', '-crf 30', '-c:a libopus', '-b:a 64k', '-threads 2'])
   .on('progress', (p) => {
     if (p.percent) process.stdout.write(`\r${Math.round(p.percent)}% `)
   })
