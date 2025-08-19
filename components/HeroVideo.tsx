@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
 import { LOGO_VERSION } from '@/lib/constants'
@@ -131,7 +131,13 @@ export default function HeroVideo({ src, className }: Props) {
           {/* Prefer WebM if available; keep MP4 as fallback */}
           <source src={shouldLoad ? src.replace(/\.mp4$/, '.webm') : undefined} type="video/webm" />
           <source src={shouldLoad ? src : undefined} type="video/mp4" />
-          <track src="/video/social-money_intro_30s_1080x1920.he.vtt" kind="captions" srcLang="he" label="עברית" default />
+          <track
+            src="/video/social-money_intro_30s_1080x1920.he.vtt"
+            kind="captions"
+            srcLang="he"
+            label="עברית"
+            default
+          />
         </video>
         <button
           type="button"
