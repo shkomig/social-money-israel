@@ -48,7 +48,12 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="כסף חברתי" />
-  <link rel="preload" href={`/images/social-money-logo-official-256.avif?v=${LOGO_VERSION}`} as="image" type="image/avif" />
+        <link
+          rel="preload"
+          href={`/images/social-money-logo-official-256.avif?v=${LOGO_VERSION}`}
+          as="image"
+          type="image/avif"
+        />
       </head>
       <body className="font-sans antialiased bg-gray-50">
         <a

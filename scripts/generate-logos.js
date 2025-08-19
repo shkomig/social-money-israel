@@ -18,26 +18,20 @@ async function generate() {
     const outWebp = path.join(OUT_DIR, `${baseName}.webp`)
     const outPng = path.join(OUT_DIR, `${baseName}.png`)
 
-    await sharp(INPUT)
-      .resize(size)
-      .avif({ quality: 65 })
-      .toFile(outAvif)
+    await sharp(INPUT).resize(size).avif({ quality: 65 }).toFile(outAvif)
 
-    await sharp(INPUT)
-      .resize(size)
-      .webp({ quality: 75 })
-      .toFile(outWebp)
+    await sharp(INPUT).resize(size).webp({ quality: 75 }).toFile(outWebp)
 
-    await sharp(INPUT)
-      .resize(size)
-      .png({ compressionLevel: 9 })
-      .toFile(outPng)
+    await sharp(INPUT).resize(size).png({ compressionLevel: 9 }).toFile(outPng)
 
     console.log('Generated', outAvif, outWebp, outPng)
   }
 
   // Also generate a small favicon-sized PNG
-  await sharp(INPUT).resize(48, 48).png().toFile(path.join(OUT_DIR, `social-money-logo-official-48.png`))
+  await sharp(INPUT)
+    .resize(48, 48)
+    .png()
+    .toFile(path.join(OUT_DIR, `social-money-logo-official-48.png`))
   console.log('Generated favicon-sized PNG')
 }
 
