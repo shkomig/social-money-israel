@@ -1,0 +1,21 @@
+[build]
+  # Run the build from the kesef-hevrati subfolder (set as Netlify base)
+  base = "kesef-hevrati"
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "netlify-plugin-use-env-in-runtime"
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  [plugins.inputs]
+  # Run Lighthouse against a known prerendered route to avoid local 404s
+  [[plugins.inputs.audits]]
+  url = "/calculators/mortgage-refinance"
+
+[[plugins]]
+  package = "netlify-plugin-bundle-env"
+  [plugins.inputs]
+  # Run only in production to avoid local recursion; limit directories to public assets
+  directories = ["public"]
