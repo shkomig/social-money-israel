@@ -1,4 +1,41 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Next.js build output
+.next/
+
+# Netlify deploy artifacts
+.netlify/
+
+# Node modules
+node_modules/
+
+# Local env files
+.env.local
+.env.*.local
+.env
+
+# Build / distribution
+dist/
+build/
+out/
+
+# Coverage
+coverage/
+lcov-report/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# Other
+.cache/# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
