@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'כסף חברתי - מחשבונים פיננסיים וזכויות סוציאליות',
     description: 'מחשבונים מדויקים להחזר מס, מענק עבודה ומחזור משכנתאות בישראל',
-    url: 'https://social-money.vercel.app',
+    url: 'https://social-money-israel.netlify.app',
     siteName: 'כסף חברתי',
     locale: 'he_IL',
     type: 'website',
