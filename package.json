@@ -24,7 +24,8 @@
     "test:ci": "jest --ci --coverage --watchAll=false",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "stylelint": "stylelint \"**/*.{css,scss}\"",
-    "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix"
+    "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix",
+    "generate:images": "node ./scripts/generate-logos.js"
   },
   "dependencies": {
     "chart.js": "^4.5.0",
@@ -53,6 +54,7 @@
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
     "prettier": "^3.3.3",
+    "sharp": "^0.32.6",
     "stylelint": "^16.9.0",
     "stylelint-config-standard": "^36.0.0",
     "tailwindcss": "^4",
