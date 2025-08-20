@@ -16,5 +16,4 @@
 [[plugins]]
   package = "netlify-plugin-bundle-env"
   [plugins.inputs]
-  contexts = ["production"]
   directories = ["public"]

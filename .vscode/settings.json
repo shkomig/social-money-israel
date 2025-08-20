@@ -1,0 +1,18 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.next": true,
+    "**/node_modules": true,
+    "**/.vscode": false
+  },
+  "search.exclude": {
+    "**/.git": true,
+    "**/.next": true,
+    "**/node_modules": true
+  },
+  "gitlens.views.repositories.files.layout": "tree",
+  "gitlens.views.repositories.files.filter": "uncommitted",
+  "gitlens.views.repositories.showIncomingActivity": false,
+  "gitlens.views.stashes.files.layout": "tree",
+  "gitlens.advanced.repositorySearchDepth": 2
+}
