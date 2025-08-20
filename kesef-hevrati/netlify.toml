@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "netlify-plugin-use-env-in-runtime"
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  [plugins.inputs]
+  # Run Lighthouse against a known prerendered route to avoid local 404s
+  # Preferred: provide audits as an array of tables
+  [[plugins.inputs.audits]]
+  url = "/calculators/mortgage-refinance"
+
+[[plugins]]
+  package = "netlify-plugin-bundle-env"
+  [plugins.inputs]
+  contexts = ["production"]
+  directories = ["public"]

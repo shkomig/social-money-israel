@@ -1,0 +1,9 @@
+{
+  "lastUpdated": "2025-08-10",
+  "boiRate": 4.5,
+  "primeRate": 6.0,
+  "avgMortgage": {
+    "linked": { "short": 3.7, "mid": 3.9, "long": 4.1 },
+    "unlinked": { "short": 4.9, "mid": 5.1, "long": 5.2 }
+  }
+}

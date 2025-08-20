@@ -1,0 +1,65 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="58" fill="#2563EB" stroke="#1E40AF" stroke-width="4"/>
+  
+  <!-- Community circle with people around dollar symbol -->
+  <g transform="translate(60, 60)">
+    <!-- Central dollar symbol -->
+    <circle cx="0" cy="0" r="20" fill="white" fill-opacity="0.9"/>
+    <text x="0" y="8" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="#2563EB">₪</text>
+    
+    <!-- People around the circle -->
+    <!-- Person 1 (top) -->
+    <g transform="translate(0, -35)">
+      <circle cx="0" cy="0" r="6" fill="white"/>
+      <rect x="-3" y="6" width="6" height="8" rx="2" fill="white"/>
+    </g>
+    
+    <!-- Person 2 (top-right) -->
+    <g transform="translate(25, -25) rotate(45)">
+      <circle cx="0" cy="0" r="6" fill="white"/>
+      <rect x="-3" y="6" width="6" height="8" rx="2" fill="white"/>
+    </g>
+    
+    <!-- Person 3 (right) -->
+    <g transform="translate(35, 0) rotate(90)">
+      <circle cx="0" cy="0" r="6" fill="white"/>
+      <rect x="-3" y="6" width="6" height="8" rx="2" fill="white"/>
+    </g>
+    
+    <!-- Person 4 (bottom-right) -->
+    <g transform="translate(25, 25) rotate(135)">
+      <circle cx="0" cy="0" r="6" fill="white"/>
+      <rect x="-3" y="6" width="6" height="8" rx="2" fill="white"/>
+    </g>
+    
+    <!-- Person 5 (bottom) -->
+    <g transform="translate(0, 35) rotate(180)">
+      <circle cx="0" cy="0" r="6" fill="white"/>
+      <rect x="-3" y="6" width="6" height="8" rx="2" fill="white"/>
+    </g>
+    
+    <!-- Person 6 (bottom-left) -->
+    <g transform="translate(-25, 25) rotate(225)">
+      <circle cx="0" cy="0" r="6" fill="white"/>
+      <rect x="-3" y="6" width="6" height="8" rx="2" fill="white"/>
+    </g>
+    
+    <!-- Person 7 (left) -->
+    <g transform="translate(-35, 0) rotate(270)">
+      <circle cx="0" cy="0" r="6" fill="white"/>
+      <rect x="-3" y="6" width="6" height="8" rx="2" fill="white"/>
+    </g>
+    
+    <!-- Person 8 (top-left) -->
+    <g transform="translate(-25, -25) rotate(315)">
+      <circle cx="0" cy="0" r="6" fill="white"/>
+      <rect x="-3" y="6" width="6" height="8" rx="2" fill="white"/>
+    </g>
+  </g>
+  
+  <!-- Connection lines between people (subtle) -->
+  <g opacity="0.3" stroke="white" stroke-width="2" fill="none">
+    <circle cx="60" cy="60" r="35"/>
+  </g>
+</svg>

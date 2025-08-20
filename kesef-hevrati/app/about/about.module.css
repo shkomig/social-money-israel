@@ -1,0 +1,6 @@
+/* Styles for the About page */
+.container {
+  direction: rtl;
+  text-align: right;
+  padding: 20px;
+}
