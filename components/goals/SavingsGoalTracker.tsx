@@ -25,6 +25,7 @@ type Goal = {
   target: number
   saved: number
   monthlyContribution: number
+  term: 'short' | 'long'
   targetDate?: string | null // YYYY-MM-DD
 }
 
@@ -95,13 +96,17 @@ export default function SavingsGoalTracker() {
   const [goals, setGoals] = useState<Goal[]>([])
   const [txns, setTxns] = useState<Txn[]>([])
   const [csvNegatives, setCsvNegatives] = useState(true)
+  const [whatIf, setWhatIf] = useState<Record<string, number>>({})
 
   // Load/save state
   useEffect(() => {
     try {
       const g = localStorage.getItem('savings:goals')
       const t = localStorage.getItem('savings:txns')
-      if (g) setGoals(JSON.parse(g))
+      if (g)
+        setGoals(
+          (JSON.parse(g) as Partial<Goal>[]).map((x) => ({ term: 'short', ...x })) as Goal[],
+        )
       if (t) setTxns(JSON.parse(t))
     } catch {
       // ignore
@@ -212,6 +217,7 @@ export default function SavingsGoalTracker() {
       target: Number(fd.get('target') || 0),
       saved: Number(fd.get('saved') || 0),
       monthlyContribution: Number(fd.get('monthlyContribution') || 0),
+      term: (String(fd.get('term')) as 'short' | 'long') || 'short',
       targetDate: String(fd.get('targetDate') || '') || null,
     }
     setGoals((s) => [...s, g])
@@ -317,6 +323,20 @@ export default function SavingsGoalTracker() {
                 placeholder="קרן חירום"
               />
             </div>
+            <div>
+              <label htmlFor="g-term" className="text-sm">
+                טווח היעד
+              </label>
+              <select
+                id="g-term"
+                name="term"
+                className="w-full rounded border px-3 py-2"
+                defaultValue="short"
+              >
+                <option value="short">קצר (עד שנה)</option>
+                <option value="long">ארוך (מעל שנה)</option>
+              </select>
+            </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
                 <label htmlFor="g-target" className="text-sm">
@@ -395,10 +415,26 @@ export default function SavingsGoalTracker() {
                   g.monthlyContribution > 0
                     ? Math.ceil(Math.max(0, g.target - g.saved) / g.monthlyContribution)
                     : null
+                const extra = whatIf[g.id] || 0
+                const totalMonthly = g.monthlyContribution + extra
+                const monthsWithExtra =
+                  totalMonthly > 0
+                    ? Math.ceil(Math.max(0, g.target - g.saved) / totalMonthly)
+                    : null
                 return (
                   <div key={g.id} className="rounded border p-3">
                     <div className="flex items-center justify-between gap-2">
-                      <div className="font-medium text-gray-900">{g.name}</div>
+                      <div className="flex items-center gap-2">
+                        <div className="font-medium text-gray-900">{g.name}</div>
+                        <span className="text-xs text-gray-500">
+                          {g.term === 'short' ? 'טווח קצר' : 'טווח ארוך'}
+                        </span>
+                        {g.saved >= g.target && (
+                          <span className="text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                            הושלם
+                          </span>
+                        )}
+                      </div>
                       <div className="text-xs text-gray-600">
                         {ILS.format(g.saved)} / {ILS.format(g.target)} ({pct}%)
                       </div>
@@ -496,6 +532,30 @@ export default function SavingsGoalTracker() {
                           </div>
                         ) : null}
                       </div>
+                    </div>
+                    <div className="mt-3">
+                      <label htmlFor={`extra-${g.id}`} className="text-xs">
+                        תוספת חודשית לסימולציה
+                      </label>
+                      <input
+                        id={`extra-${g.id}`}
+                        type="number"
+                        min={0}
+                        step="50"
+                        placeholder="0"
+                        value={extra}
+                        onChange={(e) =>
+                          setWhatIf((s) => ({ ...s, [g.id]: Number(e.target.value) }))
+                        }
+                        className="w-full rounded border px-2 py-1"
+                      />
+                      {monthsWithExtra !== null && monthsToFinish !== null &&
+                      monthsWithExtra < monthsToFinish ? (
+                        <div className="text-xs text-blue-700 mt-1">
+                          עם התוספת תסיימו בעוד ~{monthsWithExtra} חודשים במקום ~
+                          {monthsToFinish}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 )
